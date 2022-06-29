@@ -127,6 +127,7 @@
 
 
 <body>
+  <p id="testing-work"></p>
   <div class="messageheadercontain">
     <span class="messageheader">
       <p>New Whatsapp Message</p>
@@ -301,6 +302,10 @@
       }
 
       if (written_msg != "") {
+        for(user of members_array){
+            console.log(written_msg)
+            
+        }
         alert(`sending message ${written_msg}`)
       } else {
         alert("Message can not be empty")
@@ -406,10 +411,7 @@
          
         }
 
-
       })
-
-
 
       ZOHO.embeddedApp.init()
   </script>
