@@ -405,17 +405,18 @@
               user['Mobile'] = `${data.Mobile}`
               user['MB_Program_Name'] = `${data.MB_Program_Name}`
               user['name'] = `${data.Contact.name}`
-              console.log(user)
-              members_array.push(user)
-
             })
             .catch(function (error) {
               console.log(error)
             })
-           console.log("+++++++++++++++++ Members Array ++++++++++++++++++++++")
+            console.log(user)
+              members_array.push(user)
+
+          
+        }
+        console.log("+++++++++++++++++ Members Array ++++++++++++++++++++++")
             console.log(members_array)
             console.log("+++++++++++++++++ Members Array ++++++++++++++++++++++")
-        }
 
       })
 
