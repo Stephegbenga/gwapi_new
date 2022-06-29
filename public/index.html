@@ -5,7 +5,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   <script src="https://live.zwidgets.com/js-sdk/1.1/ZohoEmbededAppSDK.min.js"></script>
   <style>
     .messageheader {
@@ -377,6 +376,8 @@
 
       ZOHO.embeddedApp.on("PageLoad", function (data) {
         console.log("Page Loaded with data");
+        console.log(data)
+        console.log("================ data=========================================")
         // console.log(data)
 
         const userids = data.EntityId
