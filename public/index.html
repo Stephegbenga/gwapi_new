@@ -387,9 +387,10 @@
 
       ZOHO.embeddedApp.on("PageLoad", function (data) {
         console.log("Page Loaded with data");
-        console.log(data)
+        console.log(JSON.stringify(data));
         console.log("================ after loading =========================================")
         // console.log(data)
+
 
         const userids = data.EntityId
 
