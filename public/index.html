@@ -292,10 +292,7 @@
 
 // On CLick Send Button
     function sendmessage() {
-      for (member of members_array){
-        console.log(member)
-      }
-      
+      console.log(JSON.stringify(members_array))
       var written_msg = document.getElementsByClassName('textarea')[0].innerText
       var selected_acc = document.getElementsByClassName('senderselect')[0].innerText
       var wa_url = "https://asanafinder.com:2000/sendmessage"
@@ -392,14 +389,14 @@
           var user = {}
           ZOHO.CRM.API.getRelatedRecords({ Entity: "MB_Memberships", RecordID: userid, page: 1, per_page: 200 })
             .then(function (response) {
-              console.log(response.data)
+            //   console.log(response.data)
               data = response.data[0]
               user['id'] = `${data.id}`
               user['expiration_date'] = `${data.MB_Expiration_Date}`
               user['mobile'] = `${data.Mobile}`
               user['MB_Program_Name'] = `${data.MB_Program_Name}`
               user['name'] = `${data.Contact.name}`
-              console.log(user)
+            //   console.log(user)
               members_array.push(user)
 
             })
