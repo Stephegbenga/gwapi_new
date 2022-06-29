@@ -204,7 +204,7 @@
 
 
   <script>
-    var data;
+   
     function zohovariables() {
       var init_text = document.getElementById('zoho-variables').innerText
       // strip the white space from the text and remove the first character
@@ -292,10 +292,9 @@
 
 // On CLick Send Button
     function sendmessage() {
-      console.log(data)
+      console.log(members_array)
       var written_msg = document.getElementsByClassName('textarea')[0].innerText
       var selected_acc = document.getElementsByClassName('senderselect')[0].innerText
-      console.log(user)
       var wa_url = "https://asanafinder.com:2000/sendmessage"
       if (selected_acc == "Chatbot Account") {
         var wa_url = "https://asanafinder.com:8080/sendmessage"
@@ -398,6 +397,7 @@
               user['MB_Program_Name'] = `${data.MB_Program_Name}`
               user['name'] = `${data.Contact.name}`
               console.log(user)
+              members_array.push(user)
 
             })
             .catch(function (error) {
