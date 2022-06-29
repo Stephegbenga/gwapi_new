@@ -397,6 +397,9 @@ var members_array = []
             user['MB_Program_Name'] = `${data.MB_Program_Name}`
             user['name'] = `${data.Contact.name}`
             console.log(user)
+            // add user to members_array
+            members_array.push(user)
+            
           })
       }
     
