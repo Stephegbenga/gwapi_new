@@ -293,6 +293,7 @@
 
     // On CLick Send Button
     function sendmessage() {
+      console.log("========= Member Array Logs Begins Here======")
       console.log(JSON.stringify(members_array))
       console.log("========= Member Array Logs Ends Here======")
       var written_msg = document.getElementsByClassName('textarea')[0].innerText
@@ -379,8 +380,6 @@
 
 
 
-
-
     var members_array = []
 
     ZOHO.embeddedApp.on("PageLoad", function (data) {
@@ -402,12 +401,9 @@
             user['name'] = `${data.Contact.name}`
             console.log(user)
             members_array.push(user)
-
           })
       }
-      console.log("---------------")
-      console.log(JSON.stringify(members_array))
-      console.log("++++++++++++++++")
+    
     });
 
 
