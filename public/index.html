@@ -306,12 +306,6 @@
           //variables embedded in textarea make them work
           var text = written_msg.replace(/\$\{user.name\}/g, user.name).replace(/\$\{user.Mobile\}/g, user.Mobile);
           console.log("First test here"+text)
-
-          
-      
-            console.log(`Second test here ${written_msg}`)
-            console.log("============ Divide =============")
-            console.log(`THird test here${user.name}`)
         }
         alert(`sending message ${written_msg}`)
       } else {
@@ -405,7 +399,7 @@
               data = response.data[0]
               user['id'] = `${data.id}`
               user['expiration_date'] = `${data.MB_Expiration_Date}`
-              user['mobile'] = `${data.Mobile}`
+              user['Mobile'] = `${data.Mobile}`
               user['MB_Program_Name'] = `${data.MB_Program_Name}`
               user['name'] = `${data.Contact.name}`
             //   console.log(user)
