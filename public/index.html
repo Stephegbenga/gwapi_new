@@ -292,7 +292,10 @@
 
 // On CLick Send Button
     function sendmessage() {
-      console.log(members_array)
+      for (member of members_array){
+        console.log(member)
+      }
+      
       var written_msg = document.getElementsByClassName('textarea')[0].innerText
       var selected_acc = document.getElementsByClassName('senderselect')[0].innerText
       var wa_url = "https://asanafinder.com:2000/sendmessage"
