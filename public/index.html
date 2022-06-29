@@ -204,6 +204,7 @@
 
 
   <script>
+    var data;
     function zohovariables() {
       var init_text = document.getElementById('zoho-variables').innerText
       // strip the white space from the text and remove the first character
@@ -390,7 +391,7 @@
           ZOHO.CRM.API.getRelatedRecords({ Entity: "MB_Memberships", RecordID: userid, page: 1, per_page: 200 })
             .then(function (response) {
               console.log(response.data)
-              var data = response.data[0]
+              data = response.data[0]
               user['id'] = `${data.id}`
               user['expiration_date'] = `${data.MB_Expiration_Date}`
               user['mobile'] = `${data.Mobile}`
