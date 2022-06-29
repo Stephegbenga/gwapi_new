@@ -305,7 +305,7 @@
         for(user of members_array){
           //variables embedded in textarea make them work
           var text = written_msg.replace(/\$\{user.name\}/g, user.name).replace(/\$\{user.Mobile\}/g, user.Mobile);
-          console.log("First test here"+text)
+          console.log(text)
         }
         alert(`sending message ${written_msg}`)
       } else {
