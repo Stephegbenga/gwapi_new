@@ -206,6 +206,7 @@
 
   <script>
 
+var members_array = []
     function zohovariables() {
       var init_text = document.getElementById('zoho-variables').innerText
       // strip the white space from the text and remove the first character
@@ -377,10 +378,6 @@
       }
 
     }
-
-
-
-    var members_array = []
 
     ZOHO.embeddedApp.on("PageLoad", function (data) {
       console.log("Page Loaded with data");
