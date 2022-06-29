@@ -366,6 +366,7 @@
         document.getElementById('id02').style.display = 'block';
       }
 
+    }
 
 
 
@@ -373,11 +374,12 @@
 
       
       var members_array = []
+      console.log("================= Before loading")
 
       ZOHO.embeddedApp.on("PageLoad", function (data) {
         console.log("Page Loaded with data");
         console.log(data)
-        console.log("================ data=========================================")
+        console.log("================ after loading =========================================")
         // console.log(data)
 
         const userids = data.EntityId
@@ -408,8 +410,6 @@
 
 
       ZOHO.embeddedApp.init()
-
-    }
   </script>
 </body>
 
