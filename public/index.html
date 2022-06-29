@@ -393,7 +393,7 @@
         var user = {}
         ZOHO.CRM.API.getRelatedRecords({ Entity: "MB_Memberships", RecordID: userid, page: 1, per_page: 200 })
           .then(function (response) {
-            // console.log(response.data)
+            console.log(response.data)
             var data = response.data[0]
             user['id'] = `${data.id}`
             user['expiration_date'] = `${data.MB_Expiration_Date}`
@@ -405,7 +405,10 @@
 
           })
       }
-
+      console.log("---------------")
+      console.log(JSON.stringify(members_array))
+      console.log("++++++++++++++++")
+    });
 
 
       ZOHO.embeddedApp.init()
