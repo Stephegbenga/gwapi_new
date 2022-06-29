@@ -211,7 +211,7 @@
       // strip the white space from the text and remove the first character
       var init_text = init_text.replace(/\s/g, '').slice(1);
       console.log(init_text)
-      var variables_array = [{ "name": "Contact Name", "value": "${user.Contact.name}" }, { "name": "Mobile", "value": "${user.Mobile}" }]
+      var variables_array = [{ "name": "Contact Name", "value": "${user.name}" }, { "name": "Mobile", "value": "${user.Mobile}" }]
 
       if (init_text == "SelectVariables") {
         //  for each element in array create an p with tag and append to element with id zoho-variables 
@@ -412,7 +412,7 @@
 
       })
 
-      ZOHO.embeddedApp.init()
+    ZOHO.embeddedApp.init()
   </script>
 </body>
 
