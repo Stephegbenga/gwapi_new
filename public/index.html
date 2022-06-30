@@ -215,170 +215,39 @@
       // read and load the json object in the variables.json file
 
 
-      var variables_array =   [{
-    "name": "Owner name",
-    "value": "${user.Owner.name}"
-},  {
-    "name": "Owner id",
-    "value": "${user.Owner.id}"
-},  {
-    "name": "Owner email",
-    "value": "${user.Owner.email}"
-},  {
-    "name": "Email",
-    "value": "${user.Email}"
-},  {
-    "name": "$currency_symbol",
-    "value": "${user.$currency_symbol}"
-},  {
-    "name": "$field_states", 
-    "value": "${user.$field_states}"
-},  {
-    "name": "$photo_id",
-    "value": "${user.$photo_id}"
-},  {
-    "name": "$review_process approve",
-    "value": "${user.$review_process.approve}"
-},  
-{
-    "name": "$review_process reject",
-    "value": "${user.$review_process.reject}"
-}, 
-{
-    "name": "$review_process resubmit",
-    "value": "${user.$review_process.resubmit}"
-}, 
-
-{
-    "name": "$canvas_id",
-    "value": "${user.$canvas_id}"
-},  {
-    "name": "MB_Active_Date",
-    "value": "${user.MB_Active_Date}"
-},  {
-    "name": "Name",
-    "value": "${user.Name}"
-},  {
-    "name": "Last_Activity_Time",
-    "value": "${user.Last_Activity_Time}"
-},  {
-    "name": "MB_Expiration_Date",
-    "value": "${user.MB_Expiration_Date}"
-},  {
-    "name": "Record_Image",
-    "value": "${user.Record_Image}"
-},  {
-    "name": "Modified_By name",
-    "value": "${user.Modified_By.name}"
-},  {
-    "name": "Modified_By id",
-    "value": "${user.Modified_By.id}"
-},  {
-    "name": "Modified_By email",
-    "value": "${user.Modified_By.email}"
-},  {
-    "name": "$review",
-    "value": "${user.$review}"
-},  {
-    "name": "MB_Client_Membership_ID",
-    "value": "${user.MB_Client_Membership_ID}"
-},  {
-    "name": "MB_Count",
-    "value": "${user.MB_Count}"
-},  {
-    "name": "MB_Payment_Date",
-    "value": "${user.MB_Payment_Date}"
-},  {
-    "name": "$state",
-    "value": "${user.$state}"
-},  {
-    "name": "Unsubscribed_Mode",
-    "value": "${user.Unsubscribed_Mode}"
-},  {
-    "name": "$process_flow",
-    "value": "${user.$process_flow}"
-},  {
-    "name": "MB_Program_Schedule_Type",
-    "value": "${user.MB_Program_Schedule_Type}"
-},  {
-    "name": "MB_Membership_status",
-    "value": "${user.MB_Membership_status}"
-},  {
-    "name": "MB_Program_ID",
-    "value": "${user.MB_Program_ID}"
-},  {
-    "name": "id",
-    "value": "${user.id}"
-},  {
-    "name": "MB_Client_ID",
-    "value": "${user.MB_Client_ID}"
-},  {
-    "name": "MB_Remaining",
-    "value": "${user.MB_Remaining}"
-},  {
-    "name": "$approved",
-    "value": "${user.$approved}"
-},  {
-    "name": "$approval delegate",
-    "value": "${user.$approval.delegate}"
-},  {
-    "name": "$approval approve",
-    "value": "${user.$approval.approve}"
-},  {
-    "name": "$approval reject",
-    "value": "${user.$approval.reject}"
-},  {
-    "name": "$approval resubmit",
-    "value": "${user.$approval.resubmit}"
-},  {
-    "name": "Modified_Time",
-    "value": "${user.Modified_Time}"
-},  {
-    "name": "Created_Time",
-    "value": "${user.Created_Time}"
-},  {
-    "name": "Unsubscribed_Time",
-    "value": "${user.Unsubscribed_Time}"
-},  {
-    "name": "$editable",
-    "value": "${user.$editable}"
-},  {
-    "name": "Mobile",
-    "value": "${user.Mobile}"
-},  {
-    "name": "$orchestration",
-    "value": "${user.$orchestration}"
-}, 
-{
- "name":"Contact module",
-    "value":"${user.Contact.module}"
-},
- {
-    "name": "Contact name",
-    "value": "${user.Contact.name}"
-},  {
-    "name": "Contact id",
-    "value": "${user.Contact.id}"
-},  {
-    "name": "MB_Program_Name",
-    "value": "${user.MB_Program_Name}"
-},  {
-    "name": "MB_Membership_ID",
-    "value": "${user.MB_Membership_ID}"
-},  {
-    "name": "Created_By name",
-    "value": "${user.Created_By.name}"
-},  {
-    "name": "Created_By id",
-    "value": "${user.Created_By.id}"
-},  {
-    "name": "Created_By email",
-    "value": "${user.Created_By.email}"
-},  {"name":"$approval_state",
-    "value":"${user.$approval_state}"
-}
-
- ]
+      var variables_array = [
+      {
+        "name": "Contact module",
+        "value": "${user.Contact.module}"
+      },
+      {
+        "name": "Contact name",
+        "value": "${user.Contact.name}"
+      }, {
+        "name": "Contact id",
+        "value": "${user.Contact.id}"
+      }, {
+        "name": "MB_Program_Name",
+        "value": "${user.MB_Program_Name}"
+      },{
+          "name":"Owner name",
+          "value":"${user.Owner.name}"
+      },
+      {
+        "name":"MB_Active_Date",
+        "value":"${user.MB_Active_Date}"
+      },
+      {
+        "name":"MB_Program_Name",
+        "value":"${user.MB_Program_Name}"
+      },    {
+        "name":"MB_Expiration_Date",
+        "value":"${user.MB_Expiration_Date}"
+      },    {
+        "name":"MB_Payment_Date",
+        "value":"${user.MB_Payment_Date}"
+      }
+      ]
 
 
 
@@ -479,13 +348,21 @@
         for (user of members_array) {
           console.log(user)
 
-          var text = written_msg.replace(/\$\{user.Owner.name\}/g, user.Owner.name).replace(/\$\{user.Owner.id\}/g, user.Owner.id);
-          console.log(text)
-          
+
+          written_msg = written_msg.replace(/\$\{user.Owner.name\}/g, user.Owner.name)
+                  .replace(/\$\{user.Email\}/g, user.Email)
+                  .replace(/\$\{user.MB_Active_Date\}/g, user.MB_Active_Date)
+                  .replace(/\$\{user.MB_Program_Name\}/g, user.MB_Program_Name)
+                  .replace(/\$\{user.MB_Expiration_Date\}/g, user.MB_Expiration_Date)
+                  .replace(/\$\{user.MB_Payment_Date\}/g, user.MB_Payment_Date)
+                  .replace(/\$\{user.Contact.module\}/g, user.Contact.module)
+                  .replace(/\$\{user.Contact.name\}/g, user.Contact.name)
+                  .replace(/\$\{user.Contact.email\}/g, user.Contact.email)
 
 
         }
-        alert(`sending message ${text}`)
+        console.log(written_msg)
+        alert(`sending message ${written_msg}`)
       } else {
         alert("Message can not be empty")
       }
