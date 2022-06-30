@@ -478,10 +478,14 @@
       if (written_msg != "") {
         for (user of members_array) {
           console.log(user)
-          //variables embedded in textarea make them work
-          var text = written_msg.replace(/\$\{(.*?)\}/g, function (match, p1) {
+          //make the variables effect in the message
+          var message = written_msg.replace(/\$\{user\.([^}]*)\}/g, function (match, p1) {
+            console.log(user[p1])
             return user[p1];
           });
+          console.log(message)
+
+
           console.log(text)
         }
         alert(`sending message ${written_msg}`)
