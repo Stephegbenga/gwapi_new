@@ -480,6 +480,7 @@
           console.log(user)
           //make the variables effect in the message
           var message = written_msg.replace(/\$\{user\.([^}]*)\}/g, function (match, p1) {
+            console.log(match, p1)
             console.log(user[p1])
             return user[p1];
           });
