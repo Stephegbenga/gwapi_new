@@ -478,12 +478,8 @@
       if (written_msg != "") {
         for (user of members_array) {
           console.log(user)
-          //make the variables effect in the message
-          var message = written_msg.replace(/\$\{user\.([^}]*)\}/g, function (match, p1) {
-            console.log(match, p1)
-            console.log(user[p1])
-            return user[p1];
-          });
+
+          var text = written_msg.replace(/\$\{user.Owner.name\}/g, user.Owner.name).replace(/\$\{user.Owner.id\}/g, user.Owner.id).replace();
           console.log(message)
           console.log(written_msg)
 
