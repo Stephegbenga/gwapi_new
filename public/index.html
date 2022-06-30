@@ -480,12 +480,12 @@
           console.log(user)
 
           var text = written_msg.replace(/\$\{user.Owner.name\}/g, user.Owner.name).replace(/\$\{user.Owner.id\}/g, user.Owner.id).replace();
-          console.log(message)
-          console.log(written_msg)
+          console.log(text)
+          
 
 
         }
-        alert(`sending message ${written_msg}`)
+        alert(`sending message ${text}`)
       } else {
         alert("Message can not be empty")
       }
