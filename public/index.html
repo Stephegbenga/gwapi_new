@@ -389,8 +389,8 @@ var members_array = []
         var user = {}
         ZOHO.CRM.API.getRelatedRecords({ Entity: "MB_Memberships", RecordID: userid, page: 1, per_page: 200 })
           .then(function (response) {
-            console.log(response.data)
-            var data = response.data[0]
+            // console.log(response.data)
+            // var data = response.data[0]
             user['id'] = `${data.id}`
             user['expiration_date'] = `${data.MB_Expiration_Date}`
             user['mobile'] = `${data.Mobile}`
@@ -399,7 +399,6 @@ var members_array = []
             console.log(user)
             // add user to members_array
             members_array.push(user)
-            
           })
       }
     
