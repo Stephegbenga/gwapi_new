@@ -215,137 +215,170 @@
       // read and load the json object in the variables.json file
 
 
-      var variables_array = [{
-        "name": "Owner name",
-        "value": "${user.Owner.name}"
-      }, {
-        "name": "Owner id",
-        "value": "${user.Owner.id}"
-      }, {
-        "name": "Owner email",
-        "value": "${user.Owner.email}"
-      }, {
-        "name": "Email",
-        "value": "${user.Email}"
-      }, {
-        "name": "Currency symbol",
-        "value": "${user.$currency_symbol}"
-      }, {
-        "name": "Field states",
-        "value": "${user.$field_states}"
-      }, {
-        "name": "Photo id",
-        "value": "${user.$photo_id}"
-      }, {
-        "name": "Review process",
-        "value": "${user.$review_process}"
-      }, {
-        "name": "Canvas id",
-        "value": "${user.$canvas_id}"
-      }, {
-        "name": "MB active date",
-        "value": "${user.MB_Active_Date}"
-      }, {
-        "name": "Name",
-        "value": "${user.Name}"
-      }, {
-        "name": "Last activity time",
-        "value": "${user.Last_Activity_Time}"
-      }, {
-        "name": "MB expiration date",
-        "value": "${user.MB_Expiration_Date}"
-      }, {
-        "name": "Record image",
-        "value": "${user.Record_Image}"
-      }, {
-        "name": "Modified by",
-        "value": "${user.Modified_By}"
-      }, {
-        "name": "Review",
-        "value": "${user.$review}"
-      }, {
-        "name": "MB client membership id",
-        "value": "${user.MB_Client_Membership_ID}"
-      }, {
-        "name": "MB count",
-        "value": "${user.MB_Count}"
-      }, {
-        "name": "MB payment date",
-        "value": "${user.MB_Payment_Date}"
-      }, {
-        "name": "State",
-        "value": "${user.$state}"
-      }, {
-        "name": "Unsubscribed mode",
-        "value": "${user.Unsubscribed_Mode}"
-      }, {
-        "name": "Process flow",
-        "value": "${user.$process_flow}"
-      }, {
-        "name": "MB program schedule type",
-        "value": "${user.MB_Program_Schedule_Type}"
-      }, {
-        "name": "MB membership status",
-        "value": "${user.MB_Membership_status}"
-      }, {
-        "name": "MB program id",
-        "value": "${user.MB_Program_ID}"
-      }, {
-        "name": "Id",
-        "value": "${user.id}"
-      }, {
-        "name": "MB client id",
-        "value": "${user.MB_Client_ID}"
-      }, {
-        "name": "MB remaining",
-        "value": "${user.MB_Remaining}"
-      }, {
-        "name": "Approved",
-        "value": "${user.$approved}"
-      }, {
-        "name": "Approval",
-        "value": "${user.$approval}"
-      }, {
-        "name": "Modified time",
+      var variables_array =   [{
+    "name": "Owner name",
+    "value": "${user.Owner.name}"
+},  {
+    "name": "Owner id",
+    "value": "${user.Owner.id}"
+},  {
+    "name": "Owner email",
+    "value": "${user.Owner.email}"
+},  {
+    "name": "Email",
+    "value": "${user.Email}"
+},  {
+    "name": "$currency_symbol",
+    "value": "${user.$currency_symbol}"
+},  {
+    "name": "$field_states", 
+    "value": "${user.$field_states}"
+},  {
+    "name": "$photo_id",
+    "value": "${user.$photo_id}"
+},  {
+    "name": "$review_process approve",
+    "value": "${user.$review_process.approve}"
+},  
+{
+    "name": "$review_process reject",
+    "value": "${user.$review_process.reject}"
+}, 
+{
+    "name": "$review_process resubmit",
+    "value": "${user.$review_process.resubmit}"
+}, 
 
-        "value": "${user.Modified_Time}"
-      }, {
-        "name": "Created time",
-        "value": "${user.Created_Time}"
-      }, {
-        "name": "Unsubscribed time",
-        "value": "${user.Unsubscribed_Time}"
-      }, {
-        "name": "Editable",
-        "value": "${user.$editable}"
-      }, {
-        "name": "Orchestration",
-        "value": "${user.$orchestration}"
-      }, {
-        "name": "Contact",
-        "value": "${user.Contact}"
-      }, {
-        "name": "In merge",
-        "value": "${user.$in_merge}"
-      }, {
-        "name": "Status",
-        "value": "${user.$status}"
-      }, {
-        "name": "MB program name",
-        "value": "${user.MB_Program_Name}"
-      }, {
-        "name": "MB membership id",
-        "value": "${user.MB_Membership_ID}"
-      }, {
-        "name": "Created by",
-        "value": "${user.Created_By}"
-      }, {
-        "name": "Tag",
-        "value": "${user.Tag}"
-      }, {
-        "name": "Approval state",
-        "value": "${user.$approval_state}"
-      }]
+{
+    "name": "$canvas_id",
+    "value": "${user.$canvas_id}"
+},  {
+    "name": "MB_Active_Date",
+    "value": "${user.MB_Active_Date}"
+},  {
+    "name": "Name",
+    "value": "${user.Name}"
+},  {
+    "name": "Last_Activity_Time",
+    "value": "${user.Last_Activity_Time}"
+},  {
+    "name": "MB_Expiration_Date",
+    "value": "${user.MB_Expiration_Date}"
+},  {
+    "name": "Record_Image",
+    "value": "${user.Record_Image}"
+},  {
+    "name": "Modified_By name",
+    "value": "${user.Modified_By.name}"
+},  {
+    "name": "Modified_By id",
+    "value": "${user.Modified_By.id}"
+},  {
+    "name": "Modified_By email",
+    "value": "${user.Modified_By.email}"
+},  {
+    "name": "$review",
+    "value": "${user.$review}"
+},  {
+    "name": "MB_Client_Membership_ID",
+    "value": "${user.MB_Client_Membership_ID}"
+},  {
+    "name": "MB_Count",
+    "value": "${user.MB_Count}"
+},  {
+    "name": "MB_Payment_Date",
+    "value": "${user.MB_Payment_Date}"
+},  {
+    "name": "$state",
+    "value": "${user.$state}"
+},  {
+    "name": "Unsubscribed_Mode",
+    "value": "${user.Unsubscribed_Mode}"
+},  {
+    "name": "$process_flow",
+    "value": "${user.$process_flow}"
+},  {
+    "name": "MB_Program_Schedule_Type",
+    "value": "${user.MB_Program_Schedule_Type}"
+},  {
+    "name": "MB_Membership_status",
+    "value": "${user.MB_Membership_status}"
+},  {
+    "name": "MB_Program_ID",
+    "value": "${user.MB_Program_ID}"
+},  {
+    "name": "id",
+    "value": "${user.id}"
+},  {
+    "name": "MB_Client_ID",
+    "value": "${user.MB_Client_ID}"
+},  {
+    "name": "MB_Remaining",
+    "value": "${user.MB_Remaining}"
+},  {
+    "name": "$approved",
+    "value": "${user.$approved}"
+},  {
+    "name": "$approval delegate",
+    "value": "${user.$approval.delegate}"
+},  {
+    "name": "$approval approve",
+    "value": "${user.$approval.approve}"
+},  {
+    "name": "$approval reject",
+    "value": "${user.$approval.reject}"
+},  {
+    "name": "$approval resubmit",
+    "value": "${user.$approval.resubmit}"
+},  {
+    "name": "Modified_Time",
+    "value": "${user.Modified_Time}"
+},  {
+    "name": "Created_Time",
+    "value": "${user.Created_Time}"
+},  {
+    "name": "Unsubscribed_Time",
+    "value": "${user.Unsubscribed_Time}"
+},  {
+    "name": "$editable",
+    "value": "${user.$editable}"
+},  {
+    "name": "Mobile",
+    "value": "${user.Mobile}"
+},  {
+    "name": "$orchestration",
+    "value": "${user.$orchestration}"
+}, 
+{
+ "name":"Contact module",
+    "value":"${user.Contact.module}"
+},
+ {
+    "name": "Contact name",
+    "value": "${user.Contact.name}"
+},  {
+    "name": "Contact id",
+    "value": "${user.Contact.id}"
+},  {
+    "name": "MB_Program_Name",
+    "value": "${user.MB_Program_Name}"
+},  {
+    "name": "MB_Membership_ID",
+    "value": "${user.MB_Membership_ID}"
+},  {
+    "name": "Created_By name",
+    "value": "${user.Created_By.name}"
+},  {
+    "name": "Created_By id",
+    "value": "${user.Created_By.id}"
+},  {
+    "name": "Created_By email",
+    "value": "${user.Created_By.email}"
+},  {"name":"$approval_state",
+    "value":"${user.$approval_state}"
+}
+
+ ]
 
 
 
