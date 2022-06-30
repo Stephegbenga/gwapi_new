@@ -206,13 +206,148 @@
 
   <script>
 
-var members_array = []
+    var members_array = []
     function zohovariables() {
       var init_text = document.getElementById('zoho-variables').innerText
       // strip the white space from the text and remove the first character
       var init_text = init_text.replace(/\s/g, '').slice(1);
       console.log(init_text)
-      var variables_array = [{ "name": "Contact Name", "value": "${user.name}" }, { "name": "Mobile", "value": "${user.Mobile}" }]
+      // read and load the json object in the variables.json file
+
+
+      var variables_array = [{
+        "name": "Owner name",
+        "value": "${user.Owner.name}"
+      }, {
+        "name": "Owner id",
+        "value": "${user.Owner.id}"
+      }, {
+        "name": "Owner email",
+        "value": "${user.Owner.email}"
+      }, {
+        "name": "Email",
+        "value": "${user.Email}"
+      }, {
+        "name": "Currency symbol",
+        "value": "${user.$currency_symbol}"
+      }, {
+        "name": "Field states",
+        "value": "${user.$field_states}"
+      }, {
+        "name": "Photo id",
+        "value": "${user.$photo_id}"
+      }, {
+        "name": "Review process",
+        "value": "${user.$review_process}"
+      }, {
+        "name": "Canvas id",
+        "value": "${user.$canvas_id}"
+      }, {
+        "name": "MB active date",
+        "value": "${user.MB_Active_Date}"
+      }, {
+        "name": "Name",
+        "value": "${user.Name}"
+      }, {
+        "name": "Last activity time",
+        "value": "${user.Last_Activity_Time}"
+      }, {
+        "name": "MB expiration date",
+        "value": "${user.MB_Expiration_Date}"
+      }, {
+        "name": "Record image",
+        "value": "${user.Record_Image}"
+      }, {
+        "name": "Modified by",
+        "value": "${user.Modified_By}"
+      }, {
+        "name": "Review",
+        "value": "${user.$review}"
+      }, {
+        "name": "MB client membership id",
+        "value": "${user.MB_Client_Membership_ID}"
+      }, {
+        "name": "MB count",
+        "value": "${user.MB_Count}"
+      }, {
+        "name": "MB payment date",
+        "value": "${user.MB_Payment_Date}"
+      }, {
+        "name": "State",
+        "value": "${user.$state}"
+      }, {
+        "name": "Unsubscribed mode",
+        "value": "${user.Unsubscribed_Mode}"
+      }, {
+        "name": "Process flow",
+        "value": "${user.$process_flow}"
+      }, {
+        "name": "MB program schedule type",
+        "value": "${user.MB_Program_Schedule_Type}"
+      }, {
+        "name": "MB membership status",
+        "value": "${user.MB_Membership_status}"
+      }, {
+        "name": "MB program id",
+        "value": "${user.MB_Program_ID}"
+      }, {
+        "name": "Id",
+        "value": "${user.id}"
+      }, {
+        "name": "MB client id",
+        "value": "${user.MB_Client_ID}"
+      }, {
+        "name": "MB remaining",
+        "value": "${user.MB_Remaining}"
+      }, {
+        "name": "Approved",
+        "value": "${user.$approved}"
+      }, {
+        "name": "Approval",
+        "value": "${user.$approval}"
+      }, {
+        "name": "Modified time",
+
+        "value": "${user.Modified_Time}"
+      }, {
+        "name": "Created time",
+        "value": "${user.Created_Time}"
+      }, {
+        "name": "Unsubscribed time",
+        "value": "${user.Unsubscribed_Time}"
+      }, {
+        "name": "Editable",
+        "value": "${user.$editable}"
+      }, {
+        "name": "Orchestration",
+        "value": "${user.$orchestration}"
+      }, {
+        "name": "Contact",
+        "value": "${user.Contact}"
+      }, {
+        "name": "In merge",
+        "value": "${user.$in_merge}"
+      }, {
+        "name": "Status",
+        "value": "${user.$status}"
+      }, {
+        "name": "MB program name",
+        "value": "${user.MB_Program_Name}"
+      }, {
+        "name": "MB membership id",
+        "value": "${user.MB_Membership_ID}"
+      }, {
+        "name": "Created by",
+        "value": "${user.Created_By}"
+      }, {
+        "name": "Tag",
+        "value": "${user.Tag}"
+      }, {
+        "name": "Approval state",
+        "value": "${user.$approval_state}"
+      }]
+
+
 
       if (init_text == "SelectVariables") {
         //  for each element in array create an p with tag and append to element with id zoho-variables 
@@ -222,6 +357,9 @@ var members_array = []
           p.setAttribute("onclick", "insertvariable('" + user.value + "')");
           p.id = "variable";
           p.innerHTML = user.name;
+          var hr = document.createElement("hr");
+
+          document.getElementById("zohovar-container").appendChild(hr);
           document.getElementById("zohovar-container").appendChild(p);
 
           p.onclick = function () {
@@ -308,7 +446,9 @@ var members_array = []
         for (user of members_array) {
           console.log(user)
           //variables embedded in textarea make them work
-          var text = written_msg.replace(/\$\{user.name\}/g, user.name).replace(/\$\{user.Mobile\}/g, user.Mobile);
+          var text = written_msg.replace(/\$\{(.*?)\}/g, function (match, p1) {
+            return user[p1];
+          });
           console.log(text)
         }
         alert(`sending message ${written_msg}`)
@@ -391,18 +531,18 @@ var members_array = []
           .then(function (response) {
             // console.log(response.data)
             var data = response.data[0]
-          
+
             members_array.push(data)
 
 
           })
-        
+
       }
-    
+
     });
 
 
-      ZOHO.embeddedApp.init()
+    ZOHO.embeddedApp.init()
   </script>
 </body>
 
