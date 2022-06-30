@@ -216,34 +216,34 @@
 
 
       var variables_array = [
-      {
-        "name": "Contact module",
-        "value": "${user.Contact.module}"
-      },
-      {
-        "name": "Contact name",
-        "value": "${user.Contact.name}"
-      }, {
-        "name": "MB_Program_Name",
-        "value": "${user.MB_Program_Name}"
-      },{
-          "name":"Owner name",
-          "value":"${user.Owner.name}"
-      },
-      {
-        "name":"MB_Active_Date",
-        "value":"${user.MB_Active_Date}"
-      },
-      {
-        "name":"MB_Program_Name",
-        "value":"${user.MB_Program_Name}"
-      },    {
-        "name":"MB_Expiration_Date",
-        "value":"${user.MB_Expiration_Date}"
-      },    {
-        "name":"MB_Payment_Date",
-        "value":"${user.MB_Payment_Date}"
-      }
+        {
+          "name": "Contact module",
+          "value": "${user.Contact.module}"
+        },
+        {
+          "name": "Contact name",
+          "value": "${user.Contact.name}"
+        }, {
+          "name": "MB_Program_Name",
+          "value": "${user.MB_Program_Name}"
+        }, {
+          "name": "Owner name",
+          "value": "${user.Owner.name}"
+        },
+        {
+          "name": "MB_Active_Date",
+          "value": "${user.MB_Active_Date}"
+        },
+        {
+          "name": "MB_Program_Name",
+          "value": "${user.MB_Program_Name}"
+        }, {
+          "name": "MB_Expiration_Date",
+          "value": "${user.MB_Expiration_Date}"
+        }, {
+          "name": "MB_Payment_Date",
+          "value": "${user.MB_Payment_Date}"
+        }
       ]
 
 
@@ -309,7 +309,7 @@
 
         var config = {
           method: 'post',
-          url: 'http://127.0.0.1:2001/savemessage',
+          url: 'https://asanafinder.com/savemessage',
           headers: {
             'Content-Type': 'application/json'
           },
@@ -347,18 +347,42 @@
 
 
           written_msg = written_msg.replace(/\$\{user.Owner.name\}/g, user.Owner.name)
-                  .replace(/\$\{user.Email\}/g, user.Email)
-                  .replace(/\$\{user.MB_Active_Date\}/g, user.MB_Active_Date)
-                  .replace(/\$\{user.MB_Program_Name\}/g, user.MB_Program_Name)
-                  .replace(/\$\{user.MB_Expiration_Date\}/g, user.MB_Expiration_Date)
-                  .replace(/\$\{user.MB_Payment_Date\}/g, user.MB_Payment_Date)
-                  .replace(/\$\{user.Contact.module\}/g, user.Contact.module)
-                  .replace(/\$\{user.Contact.name\}/g, user.Contact.name)
-                  .replace(/\$\{user.Contact.email\}/g, user.Contact.email)
+            .replace(/\$\{user.Email\}/g, user.Email)
+            .replace(/\$\{user.MB_Active_Date\}/g, user.MB_Active_Date)
+            .replace(/\$\{user.MB_Program_Name\}/g, user.MB_Program_Name)
+            .replace(/\$\{user.MB_Expiration_Date\}/g, user.MB_Expiration_Date)
+            .replace(/\$\{user.MB_Payment_Date\}/g, user.MB_Payment_Date)
+            .replace(/\$\{user.Contact.module\}/g, user.Contact.module)
+            .replace(/\$\{user.Contact.name\}/g, user.Contact.name)
+            .replace(/\$\{user.Contact.email\}/g, user.Contact.email)
 
+        var data = JSON.stringify({
+          "numbers": [
+            `${user.Mobile}`
+          ],
+          "message": written_msg
+        });
+
+        var config = {
+          method: 'post',
+          url: wa_url,
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          data: data
+        };
+
+        axios(config)
+          .then(function (response) {
+            console.log(JSON.stringify(response.data));
+              
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+          
         }
-        console.log(written_msg)
-        alert(`sending message ${written_msg}`)
+      alert("Message Sent ✅")
       } else {
         alert("Message can not be empty")
       }
@@ -376,7 +400,7 @@
 
         var config = {
           method: 'get',
-          url: 'http://127.0.0.1:2001/templates',
+          url: 'https://asanafinder.com/templates',
           headers: {}
         };
 
