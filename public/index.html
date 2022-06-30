@@ -295,7 +295,7 @@ var members_array = []
     // On CLick Send Button
     function sendmessage() {
       console.log("========= Member Array Logs Begins Here======")
-      console.log(JSON.stringify(members_array))
+      console.log(JSON.stringify(members_array, null, 2))
       console.log("========= Member Array Logs Ends Here======")
       var written_msg = document.getElementsByClassName('textarea')[0].innerText
       var selected_acc = document.getElementsByClassName('senderselect')[0].innerText
