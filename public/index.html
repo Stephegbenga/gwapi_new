@@ -1,3 +1,4 @@
+
 <!-- create simple html5 template -->
 <html>
 
@@ -176,7 +177,7 @@
 
   <div id="id02" class="w3-modal">
     <div class="w3-modal-content">
-      <div class="w3-container" id="w3-container" style="min-height: 80%; min-width: 80%; overflow: scroll;">
+      <div class="w3-container" id="w3-container" style="max-height: 80%; width: 100%; overflow: scroll;">
         <span onclick="document.getElementById('id02').style.display='none'"
           class="w3-button w3-display-topright">&times;</span>
         <h4 style="font-weight: bold;" onclick="sendfromwa1()">Select Message Template</h4>
@@ -202,6 +203,22 @@
     </div>
   </div>
 
+
+  <div id="template-title" class="w3-modal">
+    <div class="w3-modal-content" style=" max-width: 200px;">
+      <div class="w3-container " id="template-title-container" style="max-height: 500px; overflow: hidden;">
+        <h4 style="font-weight:600;">Template Title</h4>
+        <div contenteditable="true" id="t-title" style="border: solid black;"></div>
+
+        <div style="align-items: center;">
+          <button style="margin-top: 20px;" onclick="savetemplatetitle()">Save</button>
+        </div>
+
+        <!-- <p style="cursor: pointer" id="variable"onclick="sendfromwa2()">Contact Name</p>
+        <p style="cursor: pointer" id="variable"onclick="sendfromwa2()">Contact Age</p> -->
+      </div>
+    </div>
+  </div>
 
   <script>
 
@@ -248,7 +265,7 @@
 
 
       if (init_text == "SelectVariables") {
-        //  for each element in array create an p with tag and append to element with id zoho-variables 
+        //  for each element in array create an p with tag and append to element with id zoho-variables
         variables_array.forEach(function (user) {
           var p = document.createElement("p");
           p.setAttribute("style", "cursor: pointer");
@@ -296,19 +313,67 @@
     // save message to template
     function savemessageastemplate() {
       var written_msg = document.getElementsByClassName('textarea')[0].innerText
+      console.log("inner html" + document.getElementsByClassName('textarea')[0].innerHTML)
       // remove white spaces at the end and beginning of written_msg
 
 
       if (written_msg == "") {
+
         alert("Message can not be empty")
       } else {
-        var data = JSON.stringify({
-          "message": written_msg
+        document.getElementById('template-title').style.display = 'block';
+      }
+    }
+
+
+
+    function savetemplatetitle() {
+      var written_msg = document.getElementsByClassName('textarea')[0].innerText
+      var template_title = document.getElementById('t-title').innerHTML
+      console.log("The template title is" + template_title)
+      console.log("This is the element inside the main message" + written_msg)
+      var data = JSON.stringify({
+        "message": written_msg
+      });
+
+      var config = {
+        method: 'post',
+        url: 'https://asanafinder.com/savemessage',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        data: data
+      };
+
+      axios(config)
+        .then(function (response) {
+          console.log(JSON.stringify(response.data));
+          alert(response.data)
+        })
+        .catch(function (error) {
+          console.log(error);
         });
+    }
+
+    // On CLick Send Button
+    function sendmessage() {
+
+      var written_msgT = document.getElementsByClassName('textarea')[0].innerText
+      var written_msgH = document.getElementsByClassName('textarea')[0].textContent
+      var selected_acc = document.getElementsByClassName('senderselect')[0].innerText
+      var wa_url = "https://asanafinder.com:2000/sendmessage"
+      if (selected_acc == "Customer Support Whatsapp") {
+        var wa_url = "https://asanafinder.com:8080/sendmessage"
+      }
+
+
+      if (written_msgH != "") {
+      
+        var data = JSON.stringify({"written_msgH":written_msgH, "written_msgT": written_msgT, "wa_url": wa_url, "users": members_array });
 
         var config = {
           method: 'post',
-          url: 'https://asanafinder.com/savemessage',
+          url: 'https://3033-102-89-45-185.eu.ngrok.io/testmodule',
           headers: {
             'Content-Type': 'application/json'
           },
@@ -318,74 +383,16 @@
         axios(config)
           .then(function (response) {
             console.log(JSON.stringify(response.data));
-            alert(response.data)
           })
           .catch(function (error) {
             console.log(error);
           });
 
 
-      }
-    }
-    
-    // On CLick Send Button 
-    function sendmessage() {
-      console.log("========= Member Array Logs Begins Here======")
-      console.log(JSON.stringify(members_array, null, 2))
-      console.log("========= Member Array Logs Ends Here======")
-      var written_msg = document.getElementsByClassName('textarea')[0].innerText
-      var selected_acc = document.getElementsByClassName('senderselect')[0].innerText
-      var wa_url = "https://asanafinder.com:2000/sendmessage"
-      if (selected_acc == "Customer Support Whatsapp") {
-        var wa_url = "https://asanafinder.com:8080/sendmessage"
-      }
-      console.log(wa_url)
-
-      if (written_msg != "") {
-        for (user of members_array) {
-          console.log(user)
-
-          written_msg = written_msg.replace(/\$\{user.Owner.name\}/g, user.Owner.name)
-          .replace(/\$\{user.Email\}/g, user.Email)
-          .replace(/\$\{user.MB_Active_Date\}/g, user.MB_Active_Date)
-          .replace(/\$\{user.MB_Program_Name\}/g, user.MB_Program_Name)
-          .replace(/\$\{user.MB_Expiration_Date\}/g, user.MB_Expiration_Date)
-          .replace(/\$\{user.MB_Payment_Date\}/g, user.MB_Payment_Date)
-          .replace(/\$\{user.Contact.module\}/g, user.Contact.module)
-          .replace(/\$\{user.Contact.name\}/g, user.Contact.name)
-          .replace(/\$\{user.Contact.email\}/g, user.Contact.email)
-
-
-          var data = JSON.stringify({
-            "numbers": [
-              `${user.Mobile}`
-            ],
-            "message": written_msg
-          });
-
-          var config = {
-            method: 'post',
-            url: wa_url,
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            data: data
-          };
-
-          axios(config)
-            .then(function (response) {
-              console.log(JSON.stringify(response.data));
-
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
-
-        }
-        alert("Message Sent ✅")
       } else {
         alert("Message can not be empty")
       }
+      //  alert("Message Sent ✅")
     }
 
     // On Template Select
@@ -406,8 +413,6 @@
 
         axios(config)
           .then(function (response) {
-            console.log(JSON.stringify(response.data))
-            console.log(response.data)
             var array = response.data
             // for each element in array create an p with tag and append to element with id idol1 and prevent additional append
             array.forEach(function (element) {
@@ -416,7 +421,7 @@
 
 
               p.style.cursor = "pointer";
-              p.style.height = "50px";
+              p.style.minHeight = "50px";
               p.innerHTML = element;
 
               p.id = "message-templates";
@@ -425,7 +430,7 @@
               document.getElementById("w3-container").appendChild(p);
               // p on click add value from p to textarea
               p.onclick = function () {
-                // replace  
+                // replace
                 document.getElementsByClassName('textarea')[0].innerHTML = element;
               }
 
@@ -450,22 +455,21 @@
 
     }
 
-    ZOHO.embeddedApp.on("PageLoad", function (data) {
+    ZOHO.embeddedApp.on("PageLoad", function (entitydetail) {
       console.log("Page Loaded with data");
-      // console.log(data)
 
-      const userids = data.EntityId
+      console.log(entitydetail.EntityId)
+
+      const userids = entitydetail.EntityId
 
       for (userid of userids) {
 
-        ZOHO.CRM.API.getRelatedRecords({ Entity: "MB_Memberships", RecordID: userid, page: 1, per_page: 200 })
+        ZOHO.CRM.API.getRelatedRecords({ Entity: entitydetail.Entity, RecordID: userid, page: 1, per_page: 200 })
           .then(function (response) {
-            // console.log(response.data)
+            console.log(response.data)
             var data = response.data[0]
-
+            data['originalmodulename'] = entitydetail.Entity
             members_array.push(data)
-
-
           })
 
       }
