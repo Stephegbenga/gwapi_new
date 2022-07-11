@@ -396,6 +396,7 @@
       if (written_msg != "") {
         console.log(JSON.stringify(written_msg))
         entitydetail['message'] = written_msg
+        entitydetail['wa_url'] = wa_url
 
         var data = JSON.stringify(entitydetail);
 
@@ -415,7 +416,6 @@
           .catch(function (error) {
             console.log(error);
           });
-
 
       } else {
         alert("Message can not be empty")
@@ -460,11 +460,6 @@
               p.onclick = function () {
                 document.getElementById('textss').value = element;
               }
-
-              // p.onclick = function () {
-                
-              // }
-
 
               var hr = document.createElement("hr");
 
