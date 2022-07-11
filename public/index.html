@@ -237,6 +237,7 @@
   <script>
     let lead;
     let moduleName;
+    let entitydetail;
 
     let variables_array;
 
@@ -395,11 +396,11 @@
       if (written_msg != "") {
         console.log(JSON.stringify(written_msg))
 
-        var data = JSON.stringify({"message":written_msg, "wa_url": wa_url, "users": members_array });
+        var data = JSON.stringify(entitydetail);
 
         var config = {
           method: 'post',
-          url: 'https://asanafinder.com/sendmessage',
+          url: 'https://8342-102-89-45-185.eu.ngrok.io/sendmessage',
           headers: {
             'Content-Type': 'application/json'
           },
@@ -484,27 +485,15 @@
 
     }
 
-    ZOHO.embeddedApp.on("PageLoad", function (entitydetail) {
-      console.log(JSON.stringify(entitydetail));
-      moduleName = entitydetail.Entity
+    ZOHO.embeddedApp.on("PageLoad", function (data) {
+      console.log(JSON.stringify(data));
+      moduleName = data.Entity
       console.log("Page Loaded with data");
 
-      console.log(entitydetail.EntityId)
+      console.log(data.EntityId)
 
-      const userids = entitydetail.EntityId
-
-      for (userid of userids) {
-
-        ZOHO.CRM.API.getRelatedRecords({ Entity: entitydetail.Entity, RecordID: userid, page: 1, per_page: 200 })
-          .then(function (response) {
-            console.log(response.data)
-            var data = response.data[0]
-            data['originalmodulename'] = entitydetail.Entity
-            members_array.push(data)
-          })
-
-      }
-
+      const userids = data.EntityId
+      entitydetail = data
     });
 
 
