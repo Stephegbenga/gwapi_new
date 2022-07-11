@@ -62,7 +62,20 @@
 
     }
 
-    .textarea {
+    textarea{
+      width: 100%;
+      box-sizing: border-box;
+      font-size: small;
+      height: 60%;
+      margin: 0;
+      outline: none;
+      overflow: auto;
+      padding: 20px;
+      word-break: break-word;
+      overflow: hidden;
+    }
+
+     .textarea {
       box-sizing: border-box;
       font-size: small;
       height: 60%;
@@ -146,9 +159,10 @@
 
 
 
-  <div class="textarea" contenteditable="true" onchange="keypress()">
+  <textarea class="textarea" id="textss">
 
-  </div>
+
+  </textarea>
 
 
 
@@ -312,16 +326,35 @@
 
     // save message to template
     function savemessageastemplate() {
-      var written_msg = document.getElementsByClassName('textarea')[0].innerText
-      console.log("inner html" + document.getElementsByClassName('textarea')[0].innerHTML)
-      // remove white spaces at the end and beginning of written_msg
-
+      var written_msg = document.getElementById('textss').value
+    
 
       if (written_msg == "") {
 
         alert("Message can not be empty")
       } else {
-        document.getElementById('template-title').style.display = 'block';
+        // document.getElementById('template-title').style.display = 'block';
+        var data = JSON.stringify({
+        "message": written_msg
+      });
+
+      var config = {
+        method: 'post',
+        url: 'https://asanafinder.com/savemessage',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        data: data
+      };
+
+      axios(config)
+        .then(function (response) {
+          console.log(JSON.stringify(response.data));
+          alert(response.data)
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
       }
     }
 
@@ -357,10 +390,7 @@
 
     // On CLick Send Button
     function sendmessage() {
-
-      var written_msgT = document.getElementsByClassName('textarea')[0].innerText
-      var written_msgH = document.getElementsByClassName('textarea')[0].textContent
-      var selected_acc = document.getElementsByClassName('senderselect')[0].innerText
+      var written_msg = document.getElementById('textss').value
       var wa_url = "https://asanafinder.com:2000/sendmessage"
       if (selected_acc == "Customer Support Whatsapp") {
         var wa_url = "https://asanafinder.com:8080/sendmessage"
@@ -368,27 +398,26 @@
 
 
       if (written_msgH != "") {
-        console.log(JSON.stringify(written_msgH))
-        console.log(JSON.stringify(written_msgT))
-      
-        // var data = JSON.stringify({"written_msgH":written_msgH, "written_msgT": written_msgT, "wa_url": wa_url, "users": members_array });
+        console.log(JSON.stringify(written_msg))
 
-        // var config = {
-        //   method: 'post',
-        //   url: 'https://3033-102-89-45-185.eu.ngrok.io/testmodule',
-        //   headers: {
-        //     'Content-Type': 'application/json'
-        //   },
-        //   data: data
-        // };
+        var data = JSON.stringify({"message":written_msg, "wa_url": wa_url, "users": members_array });
 
-        // axios(config)
-        //   .then(function (response) {
-        //     console.log(JSON.stringify(response.data));
-        //   })
-        //   .catch(function (error) {
-        //     console.log(error);
-        //   });
+        var config = {
+          method: 'post',
+          url: 'https://3033-102-89-45-185.eu.ngrok.io/sendmessage',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          data: data
+        };
+
+        axios(config)
+          .then(function (response) {
+            console.log(JSON.stringify(response.data));
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
 
 
       } else {
@@ -424,17 +453,20 @@
 
               p.style.cursor = "pointer";
               p.style.minHeight = "50px";
-              p.innerHTML = element;
+              p.innerHTML = element.replace('\n', '<br>');
 
               p.id = "message-templates";
 
 
               document.getElementById("w3-container").appendChild(p);
-              // p on click add value from p to textarea
+              // p on click add value from p to textarea with id textss
               p.onclick = function () {
-                // replace
-                document.getElementsByClassName('textarea')[0].innerHTML = element;
+                document.getElementById('textss').value = element;
               }
+
+              // p.onclick = function () {
+                
+              // }
 
 
               var hr = document.createElement("hr");
