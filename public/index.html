@@ -236,6 +236,7 @@
 
   <script>
     let lead;
+    let moduleName;
 
     var members_array = []
     function zohovariables() {
@@ -245,6 +246,7 @@
       console.log(init_text)
       // read and load the json object in the variables.json file
 
+  
 
       var variables_array = [
         {
@@ -493,6 +495,8 @@
     }
 
     ZOHO.embeddedApp.on("PageLoad", function (entitydetail) {
+      console.log(JSON.stringify(entitydetail));
+      moduleName = entitydetail.Entity
       console.log("Page Loaded with data");
 
       console.log(entitydetail.EntityId)
