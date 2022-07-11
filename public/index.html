@@ -245,54 +245,17 @@
       var init_text = init_text.replace(/\s/g, '').slice(1);
       console.log(init_text)
       // read and load the json object in the variables.json file
+      variable_sample_select = members_array[0]
+      // loop through variable_sample_select inlcuding child objects
+    
 
-      if(moduleName == 'Leads'){
+  
           var variables_array = [
-          {
-          "name": "Leads test",
-          "value": "${leads.test}"
-        }
+            {
+            "name": "Name",
+            "value": "{name}"
+           }
           ]
-      }else if(moduleName == 'MB_Memberships'){
-        var variables_array = [
-          {
-          "name": "Mb Name",
-          "value": "${leads.mb_name}"
-        }
-          ]
-      }
- 
-      // var variables_array = [
-      //   {
-      //     "name": "Contact module",
-      //     "value": "${user.Contact.module}"
-      //   },
-      //   {
-      //     "name": "Contact name",
-      //     "value": "${user.Contact.name}"
-      //   }, {
-      //     "name": "MB_Program_Name",
-      //     "value": "${user.MB_Program_Name}"
-      //   }, {
-      //     "name": "Owner name",
-      //     "value": "${user.Owner.name}"
-      //   },
-      //   {
-      //     "name": "MB_Active_Date",
-      //     "value": "${user.MB_Active_Date}"
-      //   },
-      //   {
-      //     "name": "MB_Program_Name",
-      //     "value": "${user.MB_Program_Name}"
-      //   }, {
-      //     "name": "MB_Expiration_Date",
-      //     "value": "${user.MB_Expiration_Date}"
-      //   }, {
-      //     "name": "MB_Payment_Date",
-      //     "value": "${user.MB_Payment_Date}"
-      //   }
-      // ]
-
 
 
       if (init_text == "SelectVariables") {
