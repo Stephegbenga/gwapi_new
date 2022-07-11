@@ -385,7 +385,7 @@
 
         var config = {
           method: 'post',
-          url: 'https://58ef-102-89-33-38.eu.ngrok.io/sendmessage',
+          url: 'https://asanafinder.com/sendmessage',
           headers: {
             'Content-Type': 'application/json'
           },
@@ -395,7 +395,6 @@
         axios(config)
           .then(function (response) {
             console.log(JSON.stringify(response.data));
-            lead = "Hello"
           })
           .catch(function (error) {
             console.log(error);
@@ -405,7 +404,7 @@
       } else {
         alert("Message can not be empty")
       }
-      //  alert("Message Sent ✅")
+       alert("Message Sent ✅")
     }
 
     // On Template Select
