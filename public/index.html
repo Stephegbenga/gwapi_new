@@ -238,19 +238,8 @@
     let lead;
     let moduleName;
 
-    let variables_array = [
-            {
-            "name": "Name",
-            "value": "{name}"
-           },{
-            "name": "MB_Program_Name",
-            "value": "{MB_Program_Name}"
-           },
-           {
-            "name": "MB_Expiration_Date",
-            "value": "{MB_Expiration_Date}"
-           }
-          ]
+    let variables_array;
+
     var members_array = []
     function zohovariables() {
       var init_text = document.getElementById('zoho-variables').innerText
@@ -259,6 +248,28 @@
       console.log(init_text)
       // read and load the json object in the variables.json file
       variable_sample_select = members_array[0]
+      if(moduleName == "Contacts"){
+        variables_array = [
+            {
+            "name": "Name",
+            "value": "{name}"
+           }
+          ]
+      }else{
+        variables_array = [
+            {
+            "name": "Name",
+            "value": "{name}"
+           },{
+            "name": "MB_Program_Name",
+            "value": "{MB_Program_Name}"
+           },
+           {
+            "MB_Expiration_Date": "MB_Expiration_Date",
+            "value": "{MB_Expiration_Date}"
+           }
+          ]
+      }
      
 
       if (init_text == "SelectVariables") {
