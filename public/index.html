@@ -238,6 +238,12 @@
     let lead;
     let moduleName;
 
+    let variables_array = [
+            {
+            "name": "Name",
+            "value": "{name}"
+           }
+          ]
     var members_array = []
     function zohovariables() {
       var init_text = document.getElementById('zoho-variables').innerText
@@ -247,16 +253,6 @@
       // read and load the json object in the variables.json file
       variable_sample_select = members_array[0]
       // loop through variable_sample_select inlcuding child objects
-    
-
-  
-          var variables_array = [
-            {
-            "name": "Name",
-            "value": "{name}"
-           }
-          ]
-
 
       if (init_text == "SelectVariables") {
         //  for each element in array create an p with tag and append to element with id zoho-variables
