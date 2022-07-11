@@ -235,6 +235,7 @@
   </div>
 
   <script>
+    let lead;
 
     var members_array = []
     function zohovariables() {
@@ -415,6 +416,7 @@
         axios(config)
           .then(function (response) {
             console.log(JSON.stringify(response.data));
+            lead = "Hello"
           })
           .catch(function (error) {
             console.log(error);
@@ -430,7 +432,7 @@
     // On Template Select
     function templateclick() {
       // check if element with id message-template is present
-
+     alert(lead)
       var init_text = document.getElementById('id02').innerText
       // strip the white space from the text and remove the first character
       var init_text = init_text.replace(/\s/g, '').slice(1);
