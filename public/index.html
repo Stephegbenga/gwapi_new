@@ -390,6 +390,7 @@
 
     // On CLick Send Button
     function sendmessage() {
+      var selected_acc = document.getElementsByClassName('senderselect')[0].innerText
       var written_msg = document.getElementById('textss').value
       var wa_url = "https://asanafinder.com:2000/sendmessage"
       if (selected_acc == "Customer Support Whatsapp") {
