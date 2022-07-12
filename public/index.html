@@ -249,7 +249,7 @@
       console.log(init_text)
       // read and load the json object in the variables.json file
       variable_sample_select = members_array[0]
-      if(moduleName == "Contacts"){
+      if(moduleName == "Contacts" || moduleName == "Course_Detail"){
         variables_array = [
             {
             "name": "Name",
@@ -403,6 +403,7 @@
         var config = {
           method: 'post',
           url: 'https://da52-102-89-33-44.eu.ngrok.io/sendmessage',
+          // url: 'https://asanafinder.com/sendmessage',
           headers: {
             'Content-Type': 'application/json'
           },
