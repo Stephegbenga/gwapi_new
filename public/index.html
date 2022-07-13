@@ -249,7 +249,7 @@
       console.log(init_text)
       // read and load the json object in the variables.json file
       variable_sample_select = members_array[0]
-      if(moduleName == "Contacts" || moduleName == "Course_Detail"){
+      if(moduleName == "Contacts" || moduleName == "Course_Detail" || moduleName == "Leads"){
         variables_array = [
             {
             "name": "Name",
@@ -399,11 +399,12 @@
         entitydetail['wa_url'] = wa_url
 
         var data = JSON.stringify(entitydetail);
+        console.log(data)
 
         var config = {
           method: 'post',
           // url: 'https://da52-102-89-33-44.eu.ngrok.io/sendmessage',
-          url: wa_url,
+          url: 'https://asanafinder.com/sendmessage',
           headers: {
             'Content-Type': 'application/json'
           },
