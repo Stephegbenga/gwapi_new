@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Hello, world!</title>
+    <style>
+        .list-group-item {
+            position: relative;
+            display: block;
+            padding: .5rem 1rem;
+            color: #212529;
+            text-decoration: none;
+            background-color: #fff;
+            border-bottom: 1px solid rgba(0, 0, 0, .125);
+            border-right: none;
+            border-left: none;
+            border-top: none;
+            cursor: pointer;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" style="margin-left: 15px;">
+                <h5>Select Template</h5>
+            </div>
+
+        </div>
+
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+
+            <div class="container-fluid">
+                <form class="d-flex">
+                    <input class="form-control me-auto mb-2 mb-lg-0" oninput="during()" type="search"
+                        placeholder="Search Template" aria-label="Search">
+
+                </form>
+
+                <button type="button" class="btn  btn-primary active" data-bs-toggle="button" autocomplete="off"
+                    aria-pressed="true">Create Template</button>
+
+            </div>
+        </nav>
+        <div class="container">
+            <div class="list-group" style="margin-top: 30px;">
+                <!-- <a  class="list-group-item list-group-item-action">A second link item</a>
+                <a  class="list-group-item list-group-item-action">A third link item</a>
+                <a  class="list-group-item list-group-item-action">A fourth link item</a> -->
+            </div>
+        </div>
+
+
+        <i class="fa fa-arrow-down-a-z"></i>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+
+        <script>
+            var array = ["array1", "array2", "array3", "array4", "array5"];
+
+            function during() {
+                //  for each array create a list group item
+                // remove all list group item INSIDE the list group
+                document.querySelector(".list-group").innerHTML = "";
+
+                var config = {
+                    method: 'get',
+                    url: 'https://asanafinder.com/templates',
+                    headers: {}
+                };
+
+                axios(config)
+                    .then(function (response) {
+                        var array = response.data
+
+                        array.forEach(function (element) {
+                            // check if the element already exists
+
+                            var listGroupItem = document.createElement("a");
+                            listGroupItem.className = "list-group-item list-group-item-action";
+                            listGroupItem.innerHTML = element;
+                            // if the type of innertHTML already
+                            document.querySelector(".list-group").appendChild(listGroupItem);
+                        });
+
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+
+
+
+            }
+        </script>
+</body>
+
+</html>
