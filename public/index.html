@@ -5,7 +5,6 @@
 
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <script src="https://live.zwidgets.com/js-sdk/1.1/ZohoEmbededAppSDK.min.js"></script>
@@ -143,10 +142,6 @@
 
 
 <body>
-
-
-
-
   <div class="messageheadercontain">
     <span class="messageheader">
       <p>New Whatsapp Message</p>
@@ -156,7 +151,7 @@
 
   <div class="fromsender">
     <p><span style="font-weight: 700; padding-right: 30px;  align-items: center;">Send From:</span><span
-        class="senderselect">Customer Support Whatsapp</span><i class="fa fa-caret-down" style="cursor: pointer;"
+        class="senderselect">Sales Support Whatsapp</span><i class="fa fa-caret-down" style="cursor: pointer;"
         onmouseover="senderselect()" onclick="senderselect()"></i><button style="float: right;"
         onclick="templateclick()">Select
         template</button></span> <button onclick="zohovariables()">Insert Variable</button></p>
@@ -177,7 +172,6 @@
     <button style="float: right;" class="btn" onclick="sendmessage()">Send</button>
     <button style=" float: right; margin-right: 15px;" class="btn" onclick="savemessageastemplate()">save message as
       template</button>
-      <a href="/second">second webpage</a>
   </div>
 
 
@@ -240,7 +234,7 @@
       </div>
     </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
   <script>
     let lead;
     let moduleName;
@@ -326,10 +320,10 @@
     }
 
 
-    // save message to template
+
+
     function savemessageastemplate() {
-      var written_msg = document.getElementById('textss').value
-    
+      var written_msg = document.getElementById('textss').value  
 
       if (written_msg == "") {
 
@@ -398,7 +392,6 @@
       if (selected_acc == "Customer Support Whatsapp") {
         var wa_url = "https://asanafinder.com:8080/sendmessage"
       }
-
 
       if (written_msg != "") {
         console.log(JSON.stringify(written_msg))
