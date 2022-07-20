@@ -90,12 +90,12 @@
             <div class="col">
                 <div class="row">
                     <div class="col">
-                        <button class="btn btn-primary"style="width: 130px;" onclick="body1_template_select()">
+                        <button class="btn btn-primary" style="width: 130px;" onclick="body1_template_select()">
                             Select Template
                         </button>
                     </div>
                     <div class="col" id="after_template_selected" style="font-weight: bold; font-size: 15px;">
-                      
+
                     </div>
                 </div>
 
@@ -136,8 +136,8 @@
                     <input class="form-check-input flexradio_picker" type="radio" name="flexRadioDefault"
                         id="flexRadioDefault1" value="sendnow" checked>
                     <label class="form-check-label" for="flexRadioDefault1">
-                        Send Immediately at an interval of <input type="text" id="time_interval" aria-label="Username" style="width: 30px;"
-                            value="10"> secs
+                        Send Immediately at an interval of <input type="text" id="time_interval" aria-label="Username"
+                            style="width: 30px;" value="10"> secs
 
                     </label>
                 </div>
@@ -416,20 +416,20 @@
                 var data = {}
 
                 // get the text inside  with html with class name this_where_message_willbesent
-                if(selected_template == ""){
+                if (selected_template == "") {
                     alert("Please select a template")
                     return
                 }
-               
+
                 if (sendoption == "sendlater") {
-                    
+
                     let date = $("#inputdate").val();
                     let time = $("#inputtime").val();
-                    data['date'] =  date;
-                    data['time'] =  time;
-                    data['sendoption'] =  sendoption;
-                    data['wa_option'] =  wa_option;
-                    data['selected_template'] =  selected_template;
+                    data['date'] = date;
+                    data['time'] = time;
+                    data['sendoption'] = sendoption;
+                    data['wa_option'] = wa_option;
+                    data['selected_template'] = selected_template;
 
                     let datetime = date + " " + time;
                     console.log(datetime)
@@ -442,14 +442,33 @@
                 } else {
                     // get value for time interval
                     let time_interval = $("#time_interval").val();
-                    data['sendoption'] =  sendoption;
-                    data['wa_option'] =  wa_option;
-                    data['selected_template'] =  selected_template;
+                    data['sendoption'] = sendoption;
+                    data['wa_option'] = wa_option;
+                    data['selected_template'] = selected_template;
                     data['entitydetail'] = entitydetail
                     data['time_interval'] = time_interval;
                     console.log(data)
 
                 }
+
+                var data = JSON.stringify(data);
+                var config = {
+                    method: 'post',
+                    url: 'http://127.0.0.1:2001/updated_messagesender',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: data
+                };
+
+                axios(config)
+                    .then(function (response) {
+                        console.log(JSON.stringify(response.data));
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+
 
             }
 
