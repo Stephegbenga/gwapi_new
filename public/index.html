@@ -304,6 +304,7 @@
 
 
         <script>
+            let backend_url = "https://7618-102-89-32-180.eu.ngrok.io";
             let action_array = [];
             let selected_template = ""
             let template_update_property = {}
@@ -454,7 +455,7 @@
                 var data = JSON.stringify(data);
                 var config = {
                     method: 'post',
-                    url: 'http://127.0.0.1:2001/updated_messagesender',
+                    url: `${backend_url}/updated_messagesender`,
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -519,7 +520,7 @@
 
                 var config = {
                     method: 'post',
-                    url: 'http://127.0.0.1:2001/getspecific_template',
+                    url: `${backend_url}/getspecific_template`,
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -570,7 +571,7 @@
 
                 var config = {
                     method: 'post',
-                    url: 'http://127.0.0.1:2001/getspecific_template',
+                    url: `${backend_url}/getspecific_template`,
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -709,7 +710,7 @@
 
                     var config = {
                         method: 'post',
-                        url: 'http://127.0.0.1:2001/createtemplate',
+                        url: `${backend_url}/createtemplate`,
                         headers: {
                             'Content-Type': 'application/json'
                         },
@@ -747,7 +748,7 @@
 
                 var config = {
                     method: 'post',
-                    url: 'http://127.0.0.1:2001/update_template',
+                    url: `${backend_url}/update_template`,
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -804,7 +805,7 @@
 
                 var config = {
                     method: 'post',
-                    url: 'http://127.0.0.1:2001/deletetemplate_api',
+                    url: `${backend_url}/deletetemplate_api`,
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -907,7 +908,7 @@
 
                 var config = {
                     method: 'post',
-                    url: 'http://127.0.0.1:2001/templates',
+                    url: `${backend_url}/templates`,
                     headers: {
                         'Content-Type': 'application/json'
                     },
