@@ -136,11 +136,12 @@
                     <input class="form-check-input flexradio_picker" type="radio" name="flexRadioDefault"
                         id="flexRadioDefault1" value="sendnow" checked>
                     <label class="form-check-label" for="flexRadioDefault1">
-                        Send Immediately at an interval of <input type="text" id="time_interval" aria-label="Username"
-                            style="width: 30px;" value="10"> secs
+                        Send Immediately at an interval of 
 
                     </label>
                 </div>
+               
+          
                 <div class="form-check" style="border: none;">
                     <input class="form-check-input flexradio_picker" type="radio" name="flexRadioDefault"
                         id="flexRadioDefault2" value="sendlater">
@@ -168,6 +169,11 @@
                             </div>
                         </div>
                     </div>
+                    
+                </div>
+                <div class="form-check" style="margin-top: 30px;">
+                    Interval Between message:  <input  type="text" id="time_interval" aria-label="Username"
+                    style="width: 30px;" value="10"> secs
                 </div>
 
             </div>
@@ -426,6 +432,7 @@
 
                     let date = $("#inputdate").val();
                     let time = $("#inputtime").val();
+                    let time_interval = $("#time_interval").val();
                     data['date'] = date;
                     data['time'] = time;
                     data['sendoption'] = sendoption;
@@ -437,6 +444,7 @@
                     console.log(`sendoption: ${sendoption} , wa_option: ${wa_option}`)
                     console.log(selected_template)
                     data['entitydetail'] = entitydetail
+                    data['time_interval'] = time_interval
 
 
                     console.log(data)
