@@ -1,0 +1,507 @@
+
+
+
+<!-- create simple html5 template -->
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <script src="https://live.zwidgets.com/js-sdk/1.1/ZohoEmbededAppSDK.min.js"></script>
+  <style>
+    .messageheader {
+      /* make all contents stay exactly at the middle */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* make the header have a fixed height */
+      height: 50px;
+      background-color: #07385d;
+      color: #fff;
+      float: left;
+      width: 200px;
+
+    }
+
+    .headerli {
+      /* make it stand at the middle */
+      display: flex;
+      position: fixed;
+      display: inline-block;
+    }
+
+
+    .messageheadercontain {
+      height: 51px;
+      border-bottom: 0.1px rgba(0, 0, 0, 0.3) solid;
+    }
+
+    .fa {
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+
+    .fromsender {
+      /* justify-content: center; */
+      align-items: center;
+      height: 45px;
+      border-bottom: 0.1px rgba(0, 0, 0, 0.3) solid;
+    }
+
+    .img-icon {
+      width: 30px;
+      height: 30px;
+
+    }
+
+
+
+    .ul {
+      /* align item to horizontal */
+      display: block;
+      justify-content: left;
+
+    }
+
+    textarea{
+      width: 100%;
+      box-sizing: border-box;
+      font-size: small;
+      height: 60%;
+      margin: 0;
+      outline: none;
+      overflow: auto;
+      padding: 20px;
+      word-break: break-word;
+      overflow: hidden;
+    }
+
+     .textarea {
+      box-sizing: border-box;
+      font-size: small;
+      height: 60%;
+      margin: 0;
+      outline: none;
+      overflow: auto;
+      padding: 20px;
+      word-break: break-word;
+      overflow: hidden;
+    }
+
+    .bottom-btn {
+      background: #fff;
+      border-top: 1px solid #f5f2ee;
+      box-sizing: border-box;
+      flex-direction: row;
+      justify-content: space-between;
+      position: relative;
+      width: 100%;
+      align-items: center;
+    }
+
+    .btn {
+      color: #fff;
+      border-radius: 6px;
+      font-family: LatoMedium, sans-serif;
+      box-sizing: border-box;
+      padding: 7px 20px 8px;
+      box-shadow: 0 -2px 0 0 #0061ca inset;
+      background-image: linear-gradient(to top, #0279ff, #00a3f3);
+      font-size: 1.5rem;
+      position: relative;
+      border: 0;
+      outline: 0;
+      cursor: pointer;
+      text-align: center;
+      margin-right: 8px;
+      font-size: medium;
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid #eee;
+      margin: 1px 0;
+    }
+
+    #message-templates:hover {
+      background-color: #ddd;
+    }
+
+    #variable:hover {
+      background-color: #ddd;
+    }
+
+    #message-templates {
+      margin-block-start: 0em !important;
+      margin-block-end: 0em !important;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px;
+    }
+  </style>
+</head>
+
+
+<body>
+  <div class="messageheadercontain">
+    <span class="messageheader">
+      <p>New Whatsapp Message</p>
+    </span>
+  </div>
+
+
+  <div class="fromsender">
+    <p><span style="font-weight: 700; padding-right: 30px;  align-items: center;">Send From:</span><span
+        class="senderselect">Sales Support Whatsapp</span><i class="fa fa-caret-down" style="cursor: pointer;"
+        onmouseover="senderselect()" onclick="senderselect()"></i><button style="float: right;"
+        onclick="templateclick()">Select
+        template</button></span> <button onclick="zohovariables()">Insert Variable</button></p>
+
+  </div>
+
+
+
+  <textarea class="textarea" id="textss">
+
+
+  </textarea>
+
+
+
+  <div class="bottom-btn"
+    style="align-items: flex-end; justify-content: space-between; margin-top:  0.1px rgba(0, 0, 0, 0.3) solid;">
+    <button style="float: right;" class="btn" onclick="sendmessage()">Send</button>
+    <button style=" float: right; margin-right: 15px;" class="btn" onclick="savemessageastemplate()">save message as
+      template</button>
+  </div>
+
+
+  <div id="id01" class="w3-modal">
+    <div class="w3-modal-content">
+      <div class="w3-container" style="height: 200px;">
+        <span onclick="document.getElementById('id01').style.display='none'"
+          class="w3-button w3-display-topright">&times;</span>
+        <h3>Select Account</h4>
+          <hr>
+          <p onclick="sendfromwa1()" style="cursor: pointer;">Customer Support Whatsapp</p>
+          <hr>
+          <p onclick="sendfromwa2()" style="cursor: pointer;">Sales Support Whatsapp</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="id02" class="w3-modal">
+    <div class="w3-modal-content">
+      <div class="w3-container" id="w3-container" style="max-height: 80%; width: 100%; overflow: scroll;">
+        <span onclick="document.getElementById('id02').style.display='none'"
+          class="w3-button w3-display-topright">&times;</span>
+        <h4 style="font-weight: bold;" onclick="sendfromwa1()">Select Message Template</h4>
+        <hr>
+        <!-- <p style="cursor: pointer" onclick="sendfromwa2()">template 2</p>
+        <p style="cursor: pointer" onclick="sendfromwa2()">template 3</p> -->
+      </div>
+    </div>
+  </div>
+
+
+
+  <div id="zoho-variables" class="w3-modal">
+    <div class="w3-modal-content" style=" max-width: 200px;">
+      <div class="w3-container " id="zohovar-container" style="min-height: 100px; max-height: 500px; overflow: scroll;">
+        <span onclick="document.getElementById('zoho-variables').style.display='none'"
+          class="w3-button w3-display-topright">&times;</span>
+        <h4 onclick="zohovariables()">Select Variables</h4>
+        <hr>
+        <!-- <p style="cursor: pointer" id="variable"onclick="sendfromwa2()">Contact Name</p>
+        <p style="cursor: pointer" id="variable"onclick="sendfromwa2()">Contact Age</p> -->
+      </div>
+    </div>
+  </div>
+
+
+  <div id="template-title" class="w3-modal">
+    <div class="w3-modal-content" style=" max-width: 200px;">
+      <div class="w3-container " id="template-title-container" style="max-height: 500px; overflow: hidden;">
+        <h4 style="font-weight:600;">Template Title</h4>
+        <div contenteditable="true" id="t-title" style="border: solid black;"></div>
+
+        <div style="align-items: center;">
+          <button style="margin-top: 20px;" onclick="savetemplatetitle()">Save</button>
+        </div>
+
+        <!-- <p style="cursor: pointer" id="variable"onclick="sendfromwa2()">Contact Name</p>
+        <p style="cursor: pointer" id="variable"onclick="sendfromwa2()">Contact Age</p> -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let lead;
+    let moduleName;
+    let entitydetail;
+
+    let variables_array;
+
+    var members_array = []
+    function zohovariables() {
+      var init_text = document.getElementById('zoho-variables').innerText
+      // strip the white space from the text and remove the first character
+      var init_text = init_text.replace(/\s/g, '').slice(1);
+      console.log(init_text)
+      // read and load the json object in the variables.json file
+      variable_sample_select = members_array[0]
+      if(moduleName == "Contacts" || moduleName == "Course_Detail" || moduleName == "Leads"){
+        variables_array = [
+            {
+            "name": "Name",
+            "value": "{name}"
+           }
+          ]
+      }else{
+        variables_array = [
+            {
+            "name": "Name",
+            "value": "{name}"
+           },{
+            "name": "MB_Program_Name",
+            "value": "{MB_Program_Name}"
+           },
+           {
+            "name": "MB_Expiration_Date",
+            "value": "{MB_Expiration_Date}"
+           }
+          ]
+      }
+     
+
+      if (init_text == "SelectVariables") {
+        //  for each element in array create an p with tag and append to element with id zoho-variables
+        variables_array.forEach(function (user) {
+          var p = document.createElement("p");
+          p.setAttribute("style", "cursor: pointer");
+          p.setAttribute("onclick", "insertvariable('" + user.value + "')");
+          p.id = "variable";
+          p.innerHTML = user.name;
+          var hr = document.createElement("hr");
+
+          document.getElementById("zohovar-container").appendChild(hr);
+          document.getElementById("zohovar-container").appendChild(p);
+
+          p.onclick = function () {
+            document.getElementById('textss').value += user.value;
+          }
+
+          // show the modal
+          document.getElementById("zoho-variables").style.display = "block";
+
+        });
+
+      } else {
+        document.getElementById('zoho-variables').style.display = 'block';
+      }
+
+    }
+
+
+    function senderselect() {
+      document.getElementById('id01').style.display = 'block';
+    }
+
+    function sendfromwa1() {
+      document.getElementsByClassName('senderselect')[0].innerHTML = "Customer Support Whatsapp";
+      document.getElementById('id01').style.display = 'none';
+
+    }
+
+
+    function sendfromwa2() {
+      document.getElementsByClassName('senderselect')[0].innerHTML = "Sales Support Whatsapp";
+      document.getElementById('id01').style.display = 'none';
+    }
+
+
+    // save message to template
+    function savemessageastemplate() {
+      var written_msg = document.getElementById('textss').value
+    
+
+      if (written_msg == "") {
+
+        alert("Message can not be empty")
+      } else {
+        // document.getElementById('template-title').style.display = 'block';
+        var data = JSON.stringify({
+        "message": written_msg
+      });
+
+      var config = {
+        method: 'post',
+        url: 'https://asanafinder.com/savemessage',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        data: data
+      };
+
+      axios(config)
+        .then(function (response) {
+          console.log(JSON.stringify(response.data));
+          alert(response.data)
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      }
+    }
+
+
+
+    function savetemplatetitle() {
+      var written_msg = document.getElementsByClassName('textarea')[0].innerText
+      var template_title = document.getElementById('t-title').innerHTML
+      console.log("The template title is" + template_title)
+      console.log("This is the element inside the main message" + written_msg)
+      var data = JSON.stringify({
+        "message": written_msg
+      });
+
+      var config = {
+        method: 'post',
+        url: 'https://asanafinder.com/savemessage',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        data: data
+      };
+
+      axios(config)
+        .then(function (response) {
+          console.log(JSON.stringify(response.data));
+          alert(response.data)
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+
+    // On CLick Send Button
+    function sendmessage() {
+      var selected_acc = document.getElementsByClassName('senderselect')[0].innerText
+      var written_msg = document.getElementById('textss').value
+      var wa_url = "https://asanafinder.com:2000/sendmessage"
+      if (selected_acc == "Customer Support Whatsapp") {
+        var wa_url = "https://asanafinder.com:8080/sendmessage"
+      }
+
+      if (written_msg != "") {
+        console.log(JSON.stringify(written_msg))
+        entitydetail['message'] = written_msg
+        entitydetail['wa_url'] = wa_url
+
+        var data = JSON.stringify(entitydetail);
+        console.log(data)
+
+        var config = {
+          method: 'post',
+          // url: 'https://da52-102-89-33-44.eu.ngrok.io/sendmessage',
+          url: 'https://asanafinder.com/sendmessage',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          data: data
+        };
+
+        axios(config)
+          .then(function (response) {
+            console.log(JSON.stringify(response.data));
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+      } else {
+        alert("Message can not be empty")
+      }
+       alert("Message Sent ✅")
+    }
+
+    // On Template Select
+    function templateclick() {
+      // check if element with id message-template is present
+  
+      var init_text = document.getElementById('id02').innerText
+      // strip the white space from the text and remove the first character
+      var init_text = init_text.replace(/\s/g, '').slice(1);
+
+      if (init_text == "SelectMessageTemplate") {
+
+        var config = {
+          method: 'get',
+          url: 'https://asanafinder.com/templates',
+          headers: {}
+        };
+
+        axios(config)
+          .then(function (response) {
+            var array = response.data
+            // for each element in array create an p with tag and append to element with id idol1 and prevent additional append
+            array.forEach(function (element) {
+              var p = document.createElement("p");
+              // horizontal overflow to truncated
+
+
+              p.style.cursor = "pointer";
+              p.style.minHeight = "50px";
+              p.innerHTML = element.replace('\n', '<br>');
+
+              p.id = "message-templates";
+
+
+              document.getElementById("w3-container").appendChild(p);
+              // p on click add value from p to textarea with id textss
+              p.onclick = function () {
+                document.getElementById('textss').value = element;
+              }
+
+              var hr = document.createElement("hr");
+
+              document.getElementById("w3-container").appendChild(hr);
+              document.getElementById('id02').style.display = 'block';
+            });
+
+
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+
+
+      } else {
+        document.getElementById('id02').style.display = 'block';
+      }
+
+    }
+
+    ZOHO.embeddedApp.on("PageLoad", function (data) {
+      console.log(JSON.stringify(data));
+      moduleName = data.Entity
+      console.log("Page Loaded with data");
+
+      console.log(data.EntityId)
+
+      const userids = data.EntityId
+      entitydetail = data
+    });
+
+
+    ZOHO.embeddedApp.init()
+
+    
+  </script>
+</body>
+
+</html>
+
+

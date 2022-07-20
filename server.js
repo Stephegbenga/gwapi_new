@@ -11,8 +11,8 @@ app.get("/", (req, res) => {
     res.sendFile(__dirname + "/public/index.html");
 });
 
-app.get("/second", (req, res) => {
-    res.sendFile(__dirname + "/public/secondpage.html");
+app.get("/old", (req, res) => {
+    res.sendFile(__dirname + "/public/old.html");
 });
 
 

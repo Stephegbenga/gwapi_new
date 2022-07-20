@@ -1,503 +1,986 @@
-
-
-<!-- create simple html5 template -->
-<html>
+<!doctype html>
+<html lang="en">
 
 <head>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <script src="https://live.zwidgets.com/js-sdk/1.1/ZohoEmbededAppSDK.min.js"></script>
-  <style>
-    .messageheader {
-      /* make all contents stay exactly at the middle */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      /* make the header have a fixed height */
-      height: 50px;
-      background-color: #07385d;
-      color: #fff;
-      float: left;
-      width: 200px;
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://live.zwidgets.com/js-sdk/1.1/ZohoEmbededAppSDK.min.js"></script>
 
-    }
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Hello, world!</title>
+    <style>
+        .list-group-item .form-check {
+            position: relative;
+            display: block;
+            padding: .5rem 1rem;
+            color: #212529;
+            text-decoration: none;
+            background-color: #fff;
+            border-bottom: 1px solid rgba(0, 0, 0, .125);
+            border-right: none;
+            border-left: none;
+            border-top: none;
+            cursor: pointer;
 
-    .headerli {
-      /* make it stand at the middle */
-      display: flex;
-      position: fixed;
-      display: inline-block;
-    }
+        }
 
+        .form-check {
+            border-bottom: 1px solid rgba(0, 0, 0, .125);
+            border-right: none;
+            border-left: none;
+            border-top: none;
+        }
 
-    .messageheadercontain {
-      height: 51px;
-      border-bottom: 0.1px rgba(0, 0, 0, 0.3) solid;
-    }
+        .form-check:hover {
+            background-color: #f8f9fa;
+            /* .t-action style display should be block */
+        }
 
-    .fa {
-      margin-left: 20px;
-      margin-right: 20px;
-    }
+        .body1 {
+            display: none;
+        }
 
-    .fromsender {
-      /* justify-content: center; */
-      align-items: center;
-      height: 45px;
-      border-bottom: 0.1px rgba(0, 0, 0, 0.3) solid;
-    }
+        #action_button {
+            display: none;
+        }
 
-    .img-icon {
-      width: 30px;
-      height: 30px;
+        .t-action {
+            margin-left: 10px;
+            cursor: pointer;
+        }
 
-    }
+        .wa_things {
+            margin-bottom: -30px;
+        }
 
-
-
-    .ul {
-      /* align item to horizontal */
-      display: block;
-      justify-content: left;
-
-    }
-
-    textarea{
-      width: 100%;
-      box-sizing: border-box;
-      font-size: small;
-      height: 60%;
-      margin: 0;
-      outline: none;
-      overflow: auto;
-      padding: 20px;
-      word-break: break-word;
-      overflow: hidden;
-    }
-
-     .textarea {
-      box-sizing: border-box;
-      font-size: small;
-      height: 60%;
-      margin: 0;
-      outline: none;
-      overflow: auto;
-      padding: 20px;
-      word-break: break-word;
-      overflow: hidden;
-    }
-
-    .bottom-btn {
-      background: #fff;
-      border-top: 1px solid #f5f2ee;
-      box-sizing: border-box;
-      flex-direction: row;
-      justify-content: space-between;
-      position: relative;
-      width: 100%;
-      align-items: center;
-    }
-
-    .btn {
-      color: #fff;
-      border-radius: 6px;
-      font-family: LatoMedium, sans-serif;
-      box-sizing: border-box;
-      padding: 7px 20px 8px;
-      box-shadow: 0 -2px 0 0 #0061ca inset;
-      background-image: linear-gradient(to top, #0279ff, #00a3f3);
-      font-size: 1.5rem;
-      position: relative;
-      border: 0;
-      outline: 0;
-      cursor: pointer;
-      text-align: center;
-      margin-right: 8px;
-      font-size: medium;
-    }
-
-    hr {
-      border: 0;
-      border-top: 1px solid #eee;
-      margin: 1px 0;
-    }
-
-    #message-templates:hover {
-      background-color: #ddd;
-    }
-
-    #variable:hover {
-      background-color: #ddd;
-    }
-
-    #message-templates {
-      margin-block-start: 0em !important;
-      margin-block-end: 0em !important;
-      margin-inline-start: 0px;
-      margin-inline-end: 0px;
-    }
-  </style>
+        #variable:hover {
+            background-color: #ddd;
+        }
+    </style>
 </head>
 
 
+
+
+
 <body>
-  <div class="messageheadercontain">
-    <span class="messageheader">
-      <p>New Whatsapp Message</p>
-    </span>
-  </div>
+    <div class="container container_body1" style="display: block;">
+        <h3>New Whatsapp Message</h3>
+        <div class="row wa_things no_of_contacts_here  " style="margin-top: 60px;">
+            <div class="col">
+                To
+            </div>
+            <div class="col">
+                43 Selected Contacts
+            </div>
 
-
-  <div class="fromsender">
-    <p><span style="font-weight: 700; padding-right: 30px;  align-items: center;">Send From:</span><span
-        class="senderselect">Sales Support Whatsapp</span><i class="fa fa-caret-down" style="cursor: pointer;"
-        onmouseover="senderselect()" onclick="senderselect()"></i><button style="float: right;"
-        onclick="templateclick()">Select
-        template</button></span> <button onclick="zohovariables()">Insert Variable</button></p>
-
-  </div>
-
-
-
-  <textarea class="textarea" id="textss">
-
-
-  </textarea>
-
-
-
-  <div class="bottom-btn"
-    style="align-items: flex-end; justify-content: space-between; margin-top:  0.1px rgba(0, 0, 0, 0.3) solid;">
-    <button style="float: right;" class="btn" onclick="sendmessage()">Send</button>
-    <button style=" float: right; margin-right: 15px;" class="btn" onclick="savemessageastemplate()">save message as
-      template</button>
-  </div>
-
-
-  <div id="id01" class="w3-modal">
-    <div class="w3-modal-content">
-      <div class="w3-container" style="height: 200px;">
-        <span onclick="document.getElementById('id01').style.display='none'"
-          class="w3-button w3-display-topright">&times;</span>
-        <h3>Select Account</h4>
-          <hr>
-          <p onclick="sendfromwa1()" style="cursor: pointer;">Customer Support Whatsapp</p>
-          <hr>
-          <p onclick="sendfromwa2()" style="cursor: pointer;">Sales Support Whatsapp</p>
-      </div>
-    </div>
-  </div>
-
-
-  <div id="id02" class="w3-modal">
-    <div class="w3-modal-content">
-      <div class="w3-container" id="w3-container" style="max-height: 80%; width: 100%; overflow: scroll;">
-        <span onclick="document.getElementById('id02').style.display='none'"
-          class="w3-button w3-display-topright">&times;</span>
-        <h4 style="font-weight: bold;" onclick="sendfromwa1()">Select Message Template</h4>
-        <hr>
-        <!-- <p style="cursor: pointer" onclick="sendfromwa2()">template 2</p>
-        <p style="cursor: pointer" onclick="sendfromwa2()">template 3</p> -->
-      </div>
-    </div>
-  </div>
-
-
-
-  <div id="zoho-variables" class="w3-modal">
-    <div class="w3-modal-content" style=" max-width: 200px;">
-      <div class="w3-container " id="zohovar-container" style="min-height: 100px; max-height: 500px; overflow: scroll;">
-        <span onclick="document.getElementById('zoho-variables').style.display='none'"
-          class="w3-button w3-display-topright">&times;</span>
-        <h4 onclick="zohovariables()">Select Variables</h4>
-        <hr>
-        <!-- <p style="cursor: pointer" id="variable"onclick="sendfromwa2()">Contact Name</p>
-        <p style="cursor: pointer" id="variable"onclick="sendfromwa2()">Contact Age</p> -->
-      </div>
-    </div>
-  </div>
-
-
-  <div id="template-title" class="w3-modal">
-    <div class="w3-modal-content" style=" max-width: 200px;">
-      <div class="w3-container " id="template-title-container" style="max-height: 500px; overflow: hidden;">
-        <h4 style="font-weight:600;">Template Title</h4>
-        <div contenteditable="true" id="t-title" style="border: solid black;"></div>
-
-        <div style="align-items: center;">
-          <button style="margin-top: 20px;" onclick="savetemplatetitle()">Save</button>
         </div>
 
-        <!-- <p style="cursor: pointer" id="variable"onclick="sendfromwa2()">Contact Name</p>
-        <p style="cursor: pointer" id="variable"onclick="sendfromwa2()">Contact Age</p> -->
-      </div>
+
+        <div class="row wa_things" style="margin-top: 60px;">
+            <div class="col">
+                Template
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <button class="btn btn-primary" onclick="body1_template_select()">
+                            Select Template
+                        </button>
+                    </div>
+                    <div class="col" id="after_template_selected" style="font-weight: bold; font-size: 15px;">
+                      
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <div class="row wa_things" style="margin-top: 60px;">
+            <div class="col">
+                From
+            </div>
+            <div class="col wa_account_select">
+                <div class="dropdown ">
+                    <button class="btn btn-secondary dropdown-toggle this_where_message_willbesent" type="button"
+                        id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        Sales Support
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="#" onclick="wa_sales()">Sales Support</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="wa_customer()">Customer Support</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <div class="row wa_things" style="margin-top: 60px;">
+            <div class="col">
+                Send Options
+            </div>
+            <div class="col">
+
+                <div class="form-check" style="border: none;">
+                    <input class="form-check-input flexradio_picker" type="radio" name="flexRadioDefault"
+                        id="flexRadioDefault1" value="sendnow" checked>
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Send Immediately at an interval of <input type="text" aria-label="Username" style="width: 30px;"
+                            value="10"> secs
+
+                    </label>
+                </div>
+                <div class="form-check" style="border: none;">
+                    <input class="form-check-input flexradio_picker" type="radio" name="flexRadioDefault"
+                        id="flexRadioDefault2" value="sendlater">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        Schedule Later
+                    </label>
+                    <div class="container" id="date_time_picker"
+                        style="margin-top: 20px; display: none; background-color:0 0 1px rgb(0 0 0 / 20%); height: 60px;">
+                        <div class="align-self-center">
+                            <div class="row">
+                                <div class="col">
+                                    Date:
+                                </div>
+                                <div class="col">
+                                    Time:
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input type="date" class="form-control" id="inputdate" placeholder="Select Date">
+                            </div>
+                            <div class="col">
+                                <input type="time" class="form-control" id="inputtime" placeholder="Select Time">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <div class="container " style="margin-top: 60px;">
+            <div class="row wa_things" style="margin-top: 60px;">
+                <hr style="height: 5px; ">
+
+            </div>
+            <div style="margin-top: 60px; text-align: end;">
+                <button class="btn btn-primary" type="button" onclick="send_whatsappmessage()">
+                    Send Message
+                </button>
+            </div>
+        </div>
+
+
     </div>
-  </div>
-
-  <script>
-    let lead;
-    let moduleName;
-    let entitydetail;
-
-    let variables_array;
-
-    var members_array = []
-    function zohovariables() {
-      var init_text = document.getElementById('zoho-variables').innerText
-      // strip the white space from the text and remove the first character
-      var init_text = init_text.replace(/\s/g, '').slice(1);
-      console.log(init_text)
-      // read and load the json object in the variables.json file
-      variable_sample_select = members_array[0]
-      if(moduleName == "Contacts" || moduleName == "Course_Detail" || moduleName == "Leads"){
-        variables_array = [
-            {
-            "name": "Name",
-            "value": "{name}"
-           }
-          ]
-      }else{
-        variables_array = [
-            {
-            "name": "Name",
-            "value": "{name}"
-           },{
-            "name": "MB_Program_Name",
-            "value": "{MB_Program_Name}"
-           },
-           {
-            "name": "MB_Expiration_Date",
-            "value": "{MB_Expiration_Date}"
-           }
-          ]
-      }
-     
-
-      if (init_text == "SelectVariables") {
-        //  for each element in array create an p with tag and append to element with id zoho-variables
-        variables_array.forEach(function (user) {
-          var p = document.createElement("p");
-          p.setAttribute("style", "cursor: pointer");
-          p.setAttribute("onclick", "insertvariable('" + user.value + "')");
-          p.id = "variable";
-          p.innerHTML = user.name;
-          var hr = document.createElement("hr");
-
-          document.getElementById("zohovar-container").appendChild(hr);
-          document.getElementById("zohovar-container").appendChild(p);
-
-          p.onclick = function () {
-            document.getElementById('textss').value += user.value;
-          }
-
-          // show the modal
-          document.getElementById("zoho-variables").style.display = "block";
-
-        });
-
-      } else {
-        document.getElementById('zoho-variables').style.display = 'block';
-      }
-
-    }
-
-
-    function senderselect() {
-      document.getElementById('id01').style.display = 'block';
-    }
-
-    function sendfromwa1() {
-      document.getElementsByClassName('senderselect')[0].innerHTML = "Customer Support Whatsapp";
-      document.getElementById('id01').style.display = 'none';
-
-    }
-
-
-    function sendfromwa2() {
-      document.getElementsByClassName('senderselect')[0].innerHTML = "Sales Support Whatsapp";
-      document.getElementById('id01').style.display = 'none';
-    }
 
 
 
 
-    function savemessageastemplate() {
-      var written_msg = document.getElementById('textss').value  
-
-      if (written_msg == "") {
-
-        alert("Message can not be empty")
-      } else {
-        // document.getElementById('template-title').style.display = 'block';
-        var data = JSON.stringify({
-        "message": written_msg
-      });
-
-      var config = {
-        method: 'post',
-        url: 'https://asanafinder.com/savemessage',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        data: data
-      };
-
-      axios(config)
-        .then(function (response) {
-          console.log(JSON.stringify(response.data));
-          alert(response.data)
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-      }
-    }
 
 
 
-    function savetemplatetitle() {
-      var written_msg = document.getElementsByClassName('textarea')[0].innerText
-      var template_title = document.getElementById('t-title').innerHTML
-      console.log("The template title is" + template_title)
-      console.log("This is the element inside the main message" + written_msg)
-      var data = JSON.stringify({
-        "message": written_msg
-      });
-
-      var config = {
-        method: 'post',
-        url: 'https://asanafinder.com/savemessage',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        data: data
-      };
-
-      axios(config)
-        .then(function (response) {
-          console.log(JSON.stringify(response.data));
-          alert(response.data)
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    }
-
-    // On CLick Send Button
-    function sendmessage() {
-      var selected_acc = document.getElementsByClassName('senderselect')[0].innerText
-      var written_msg = document.getElementById('textss').value
-      var wa_url = "https://asanafinder.com:2000/sendmessage"
-      if (selected_acc == "Customer Support Whatsapp") {
-        var wa_url = "https://asanafinder.com:8080/sendmessage"
-      }
-
-      if (written_msg != "") {
-        console.log(JSON.stringify(written_msg))
-        entitydetail['message'] = written_msg
-        entitydetail['wa_url'] = wa_url
-
-        var data = JSON.stringify(entitydetail);
-        console.log(data)
-
-        var config = {
-          method: 'post',
-          // url: 'https://da52-102-89-33-44.eu.ngrok.io/sendmessage',
-          url: 'https://asanafinder.com/sendmessage',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          data: data
-        };
-
-        axios(config)
-          .then(function (response) {
-            console.log(JSON.stringify(response.data));
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-
-      } else {
-        alert("Message can not be empty")
-      }
-       alert("Message Sent ✅")
-    }
-
-    // On Template Select
-    function templateclick() {
-      // check if element with id message-template is present
-  
-      var init_text = document.getElementById('id02').innerText
-      // strip the white space from the text and remove the first character
-      var init_text = init_text.replace(/\s/g, '').slice(1);
-
-      if (init_text == "SelectMessageTemplate") {
-
-        var config = {
-          method: 'get',
-          url: 'https://asanafinder.com/templates',
-          headers: {}
-        };
-
-        axios(config)
-          .then(function (response) {
-            var array = response.data
-            // for each element in array create an p with tag and append to element with id idol1 and prevent additional append
-            array.forEach(function (element) {
-              var p = document.createElement("p");
-              // horizontal overflow to truncated
 
 
-              p.style.cursor = "pointer";
-              p.style.minHeight = "50px";
-              p.innerHTML = element.replace('\n', '<br>');
-
-              p.id = "message-templates";
 
 
-              document.getElementById("w3-container").appendChild(p);
-              // p on click add value from p to textarea with id textss
-              p.onclick = function () {
-                document.getElementById('textss').value = element;
-              }
 
-              var hr = document.createElement("hr");
 
-              document.getElementById("w3-container").appendChild(hr);
-              document.getElementById('id02').style.display = 'block';
+    <!-- Body 2 Below  -->
+
+
+    <div class="container_body2" style="display: none;">
+        <div class="row">
+            <div class="col-md-12" style="margin-left: 15px;">
+                <h5>Select Template</h5>
+            </div>
+            <div>
+
+
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+
+                    <div class="container-fluid">
+                        <form class="d-flex">
+                            <input class="form-control me-auto mb-2 mb-lg-0" id="search_bal"
+                                oninput="onsearchtemplateinput()" type="search" placeholder="Search Template"
+                                aria-label="Search">
+                            <div class="dropdown" id="action_button">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Actions
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="#" onclick="delete_templates()">Delete</a></li>
+                                    <li><a class="dropdown-item" href="#" id="action_preview"
+                                            onclick="previewtemplate()">Preview</a></li>
+                                    <li><a class="dropdown-item" href="#" id="action_edit"
+                                            onclick="edittemplate()">Edit</a></li>
+                                </ul>
+
+
+                            </div>
+
+                        </form>
+
+
+
+
+                        <button type="button" class="btn  btn-primary active" data-bs-toggle="button"
+                            onclick="createtemplate()" autocomplete="off" aria-pressed="true">Create Template</button>
+
+                    </div>
+                </nav>
+                <div class="container">
+                    <div class="list-group" style="margin-top: 30px;">
+
+
+
+
+
+                    </div>
+                    <!-- create button that aligns to the right end -->
+
+                    <div class="d-flex flex-row-reverse bd-highlight ">
+                        <button type="button" class="btn btn-primary template_select" data-bs-toggle="button"
+                            autocomplete="off" aria-pressed="true" onclick="templateselected()"
+                            style="display: none;">select template</button>
+                    </div>
+
+                </div>
+
+
+
+                <!-- Modal  for Success Delete-->
+                <div class="modal fade" id="alertdelete" tabindex="-1" aria-labelledby="alertdelete" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content alertdelete_class">
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <!-- modal for template edit and tempate create -->
+                <div class="modal fade" id="template_preview" tabindex="-1" aria-labelledby="alertdelete"
+                    aria-hidden="true">
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+
+
+
+
+        <!-- JAVASCRTIPTS CODE HERE -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+
+        <script>
+            let action_array = [];
+            let selected_template = ""
+            let template_update_property = {}
+            let moduleName;
+            let variables_array;
+            let entitydetail;
+            let wa_option;
+            let sendoption;
+            sendoption = "sendnow"
+            wa_option = "https://asanafinder.com:2000/sendmessage";
+
+            function variableinsert() {
+                if (moduleName == "Contacts" || moduleName == "Course_Detail" || moduleName == "Leads") {
+                    variables_array = [{
+                        "name": "Name",
+                        "value": "{name}"
+                    }]
+                } else {
+                    variables_array = [{
+                            "name": "Name",
+                            "value": "{name}"
+                        }, {
+                            "name": "MB_Program_Name",
+                            "value": "{MB_Program_Name}"
+                        },
+                        {
+                            "name": "MB_Expiration_Date",
+                            "value": "{MB_Expiration_Date}"
+                        }
+                    ]
+                }
+
+                var html_content = `
+                <span onclick="document.getElementById('zoho-variables').style.display='none'"
+                  class="w3-button w3-display-topright">&times;</span>
+                <h4 onclick="zohovariables()">Select Variables</h4>
+                <hr>
+                
+                `
+
+
+                $("#zohovar-container").html(html_content);
+                // loop through array and create a p with the name and value
+                for (let i = 0; i < variables_array.length; i++) {
+                    let variable = variables_array[i];
+                    // create element p
+                    let p = document.createElement("p");
+                    // add class
+                    p.id = "variable";
+                    p.style.cursor = "pointer";
+                    p.innerHTML = variable.name;
+
+
+                    // p on click add variabls_array[i]['value'] to the text area with classname editing_area
+                    p.onclick = function () {
+                        let textarea = document.getElementsByClassName("editingg_area")[0];
+                        textarea.value += variable.value;
+                    }
+
+                    p.onclick = function () {
+                        console.log(variable.value)
+                        $(".editing_area").val($(".editing_area").val() + variable.value);
+                    }
+
+
+
+                    $("#zohovar-container").append(p);
+                    $("#zoho-variables").show()
+                }
+
+
+            }
+
+
+
+
+
+            onsearchtemplateinput()
+            // var tttttt = $('.flexradio_picker').val()
+            // console.log(tttttt)
+
+            // console.log value of radio picker
+            $(".flexradio_picker").change(function () {
+                if ($(this).is(":checked")) {
+                    sendoption = $(this).val();
+                    if ($(this).val() == "sendlater") {
+                        $("#date_time_picker").show();
+                    } else {
+                        $("#date_time_picker").hide();
+                    }
+                }
             });
 
 
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+            function templateselected() {
+                selected_template = action_array[0]
+                $("#after_template_selected").html(selected_template);
+                $(".container_body2").hide();
+                $(".container_body1").show()
+            }
+
+
+            function body1_template_select() {
+                $(".container_body1").hide();
+                $(".container_body2").show();
+            }
+
+
+            function send_whatsappmessage() {
+                var data = {}
+
+                // get the text inside  with html with class name this_where_message_willbesent
+                if(selected_template == ""){
+                    alert("Please select a template")
+                    return
+                }
+               
+                if (sendoption == "sendlater") {
+                    
+                    let date = $("#inputdate").val();
+                    let time = $("#inputtime").val();
+                    data['date'] =  date;
+                    data['time'] =  time;
+                    data['sendoption'] =  sendoption;
+                    data['wa_option'] =  wa_option;
+                    data['selected_template'] =  selected_template;
+
+                    let datetime = date + " " + time;
+                    console.log(datetime)
+                    console.log(`sendoption: ${sendoption} , wa_option: ${wa_option}`)
+                    console.log(selected_template)
+                    data['entitydetail'] = entitydetail
+                } else {
+                    
+                }
+
+            }
 
 
 
-      } else {
-        document.getElementById('id02').style.display = 'block';
-      }
-
-    }
-
-    ZOHO.embeddedApp.on("PageLoad", function (data) {
-      console.log(JSON.stringify(data));
-      moduleName = data.Entity
-      console.log("Page Loaded with data");
-
-      console.log(data.EntityId)
-
-      const userids = data.EntityId
-      entitydetail = data
-    });
 
 
-    ZOHO.embeddedApp.init()
-  </script>
+            function wa_sales() {
+                wa_option = "https://asanafinder.com:2000/sendmessage";
+                var html_content = `<div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        Sales Support
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <li><a class="dropdown-item" href="#" onclick="wa_sales()">Sales Support</a></li>
+                      <li><a class="dropdown-item" href="#" onclick="wa_customer()">Customer Support</a></li>
+                    </ul>
+                  </div>`
+
+                $(".wa_account_select").html(html_content)
+            }
+
+
+            function wa_customer() {
+                wa_option = "https://asanafinder.com:8080/sendmessage";
+                var html_content = `<div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        Customer Support
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <li><a class="dropdown-item" href="#" onclick="wa_sales()">Sales Support</a></li>
+                      <li><a class="dropdown-item" href="#" onclick="wa_customer()">Customer Support</a></li>
+                    </ul>
+                  </div>`
+
+                $(".wa_account_select").html(html_content)
+            }
+
+
+
+
+            // show template preview
+            function previewtemplate() {
+
+                var data = JSON.stringify({
+                    "template_name": action_array[0]
+                });
+
+                var config = {
+                    method: 'post',
+                    url: 'http://127.0.0.1:2001/getspecific_template',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: data
+                };
+
+                axios(config)
+                    .then(function (response) {
+                        console.log(JSON.stringify(response.data));
+                        // append to div with id template_preview
+                        var preview_html = `
+                     <div class="modal-dialog">
+                     <div class="modal-content template_preview_class">
+                     <div class="container" style="margin-top: 10px; margin-bottom: 20px;">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Title</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                    value="${response.data.title}" disabled readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">Content</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" on rows="10"
+                                 disabled readonly>${response.data.content}</textarea>
+                            </div>
+                        
+
+                            </div>
+                            </div>`
+                        $("#template_preview").html(preview_html);
+                        $('#template_preview').modal('show')
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+
+            }
+
+
+
+
+            // Edit template
+            function edittemplate() {
+
+
+                var data = JSON.stringify({
+                    "template_name": action_array[0]
+                });
+
+                var config = {
+                    method: 'post',
+                    url: 'http://127.0.0.1:2001/getspecific_template',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: data
+                };
+
+                axios(config)
+                    .then(function (response) {
+                        template_update_property['old_title'] = action_array[0]
+                        console.log(JSON.stringify(response.data));
+
+                        // append to div with id template_preview
+                        var preview_html = `
+                     <div class="modal-dialog">
+                     <div class="modal-content template_preview_class">
+                        <div class="container" style="margin-top: 10px; margin-bottom: 20px;">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Title</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                    placeholder="Your title goes here" value="${response.data.title}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">Content</label>
+                                <textarea class="form-control editing_area" id="exampleFormControlTextarea1" rows="10"
+                                  ">${response.data.content}</textarea>
+                            </div>
+
+
+
+                                                            
+        <div id="zoho-variables" class="w3-modal">
+            <div class="w3-modal-content" style=" max-width: 200px;">
+              <div class="w3-container " id="zohovar-container" style="min-height: 100px; max-height: 500px; overflow: scroll;">
+                
+
+                
+              </div>
+            </div>
+         </div>
+
+
+
+                            <div class="d-flex justify-content-end">
+                                    <div class="row">
+                                        <div class="col">
+                                            <btn class="btn btn-primary" onclick="variableinsert()" style="width: 120px;">Insert Variable</btn>
+                                        </div>
+                                        <div class="col">
+                                            <btn class="btn btn-primary" onclick="updatetemplate()">Save</btn>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+
+
+                            </div>
+                            </div>`
+                        $("#template_preview").html(preview_html);
+                        $('#template_preview').modal('show')
+                        action_array = []
+
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+
+            }
+
+
+            function createtemplate() {
+                // 
+                var html_t = `<div class="modal-dialog">
+
+                        <div class="modal-content template_preview_class">
+                            <div class="container" style="margin-top: 10px; margin-bottom: 20px;">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Title</label>
+                                    <input type="text" class="form-control" id="exampleFormControlInput1"
+                                        placeholder="Your title here">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleFormControlTextarea1" class="form-label">Content</label>
+                                    <textarea class="form-control editing_area" id="exampleFormControlTextarea1" rows="10"
+                                      "></textarea>
+                                </div>
+
+
+                                
+        <div id="zoho-variables" class="w3-modal">
+            <div class="w3-modal-content" style=" max-width: 200px;">
+              <div class="w3-container " id="zohovar-container" style="min-height: 100px; max-height: 500px; overflow: scroll;">
+                
+
+                
+              </div>
+            </div>
+         </div>
+
+
+
+                                <div class="d-flex justify-content-end">
+                                    <div class="row">
+                                        <div class="col">
+                                            <btn class="btn btn-primary" onclick="variableinsert()" style="width: 120px;">Insert Variable</btn>
+                                        </div>
+                                        <div class="col">
+                                            <btn class="btn btn-primary" onclick="savetemplatetodb()">Save</btn>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+
+                        
+                            </div>
+
+                        </div>
+                        </div>`
+                $("#template_preview").html(html_t);
+
+                $('#template_preview').modal('show')
+            }
+
+            function savetemplatetodb() {
+                var title = $("#exampleFormControlInput1").val()
+                var content = $("#exampleFormControlTextarea1").val()
+
+
+                if (title == '' || content == '') {
+                    alert('Please fill all the fields')
+                } else {
+
+                    var data = JSON.stringify({
+                        "title": title,
+                        "content": content
+                    });
+
+                    var config = {
+                        method: 'post',
+                        url: 'http://127.0.0.1:2001/createtemplate',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        data: data
+                    };
+
+                    axios(config)
+                        .then(function (response) {
+                            console.log(JSON.stringify(response.data));
+                            alert(response.data)
+                            $('#template_preview').modal('hide')
+                            onsearchtemplateinput()
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+
+                }
+
+            }
+
+
+
+
+            function updatetemplate() {
+                //    get the value of the title and content
+                var title = $("#exampleFormControlInput1").val()
+                var content = $("#exampleFormControlTextarea1").val()
+                template_update_property['new_title'] = title
+                template_update_property['content'] = content
+
+
+
+                var data = JSON.stringify(template_update_property);
+
+                var config = {
+                    method: 'post',
+                    url: 'http://127.0.0.1:2001/update_template',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: data
+                };
+
+                axios(config)
+                    .then(function (response) {
+                        console.log(JSON.stringify(response.data));
+                        action_array = []
+                        alert(response.data)
+                        $('#template_preview').modal('hide')
+                        onsearchtemplateinput()
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+
+            }
+
+
+
+
+
+
+            function testbutton() {
+                console.log(JSON.stringify(action_array))
+                alert("You just clicked a test button")
+
+
+
+            }
+
+
+            // function preview() {
+            //     // hide body 2
+            //     $(".container_body2").hide();
+            //     // show body 3
+            //     $(".container_body1").show();
+
+            // }
+
+
+
+
+
+
+
+            function delete_templates() {
+                // get the length of action_array
+                var length_arr_to_bedeleted = action_array.length;
+
+                var data = JSON.stringify(action_array);
+
+                var config = {
+                    method: 'post',
+                    url: 'http://127.0.0.1:2001/deletetemplate_api',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: data
+                };
+
+                axios(config)
+                    .then(function (response) {
+                        console.log(JSON.stringify(response.data));
+                        action_array = [];
+                        onsearchtemplateinput()
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+
+
+                // $(".alertdelete_class").empty();
+                // $(".alertdelete_class").append("<div class='modal-header'><h5 class='modal-title' id='alertdelete'>Success</h5><button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button></div>");
+
+                // $(".alertdelete_class").append("<div class='modal-body'>All "+length_arr_to_bedeleted+" selected templates deleted successfully.</div>");
+                // // add close button
+                // $(".alertdelete_class").append("<div class='modal-footer'><button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button></div>");
+                if (length_arr_to_bedeleted > 1) {
+                    var header =
+                        "<div class='modal-header'><h5 class='modal-title' id='alertdelete'>Success</h5><button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button></div>"
+                    var body = "<div class='modal-body'>All " + length_arr_to_bedeleted +
+                        " selected templates deleted successfully.</div>"
+                    var footer =
+                        "<div class='modal-footer'><button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button></div>"
+                } else {
+
+                    var header =
+                        "<div class='modal-header'><h5 class='modal-title' id='alertdelete'>Success</h5><button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button></div>"
+                    var body = "<div class='modal-body'>1 template deleted successfully.</div>"
+                    var footer =
+                        "<div class='modal-footer'><button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button></div>"
+                }
+
+
+                var modal = header + body + footer;
+                $(".alertdelete_class").html(modal);
+                // show the modal
+                $("#alertdelete").modal("show");
+
+            }
+
+
+            function addtemplate() {
+
+            }
+
+            $(function () {
+                var dtToday = new Date();
+
+                var month = dtToday.getMonth() + 1;
+                var day = dtToday.getDate();
+                var year = dtToday.getFullYear();
+                if (month < 10)
+                    month = '0' + month.toString();
+                if (day < 10)
+                    day = '0' + day.toString();
+                var maxDate = year + '-' + month + '-' + day;
+                $('#inputdate').attr('min', maxDate);
+            });
+
+            // prefill date with today's date and the time to 10 mins later
+            $(function () {
+                var dtToday = new Date();
+                var month = dtToday.getMonth() + 1;
+                var day = dtToday.getDate();
+                var year = dtToday.getFullYear();
+                if (month < 10)
+                    month = '0' + month.toString();
+                if (day < 10)
+                    day = '0' + day.toString();
+                var maxDate = year + '-' + month + '-' + day;
+                $('#inputdate').val('min', maxDate);
+
+                $('#inputdate').val(maxDate);
+                var time = dtToday.getHours();
+
+
+                console.log(time)
+                if (time < 10)
+                    time = '0' + time.toString();
+                var time_str = time + ":59";
+                $('#inputtime').val(time_str);
+            });
+
+
+
+            function onsearchtemplateinput() {
+                // get the 
+                var search_value = $("#search_bal").val();
+
+                var data = JSON.stringify({
+                    "search_input": search_value
+                });
+
+                var config = {
+                    method: 'post',
+                    url: 'http://127.0.0.1:2001/templates',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: data
+                };
+
+                axios(config)
+                    .then(function (response) {
+                        var array = response.data
+                        $(".list-group").empty();
+
+
+                        array.forEach(function (element) {
+
+
+                            var listGroupItem = document.createElement("div");
+                            listGroupItem.className = "form-check";
+                            // Add on hover styling
+
+                            listGroupItem.innerHTML = `
+                            <input class="form-check-input" type="checkbox" value="${element.title}">
+                            <label class="form-check-label" for="${element.content}">
+                              ${element.title}
+                            </label>
+                            `;
+
+
+
+
+
+                            $(".list-group").append(listGroupItem);
+                            // add an event listener to the form-check-input
+                            listGroupItem.querySelector('input[type="checkbox"]').addEventListener(
+                                'change',
+                                function () {
+
+                                    // // get the value of the checkbox
+                                    var value = this.checked ? this.value : false;
+                                    if (value == false) {
+                                        // remove the value from the array
+                                        action_array.splice(action_array.indexOf(this.value), 1);
+                                    } else {
+                                        action_array.push(value)
+                                    }
+                                    // get the number of values in action_array
+                                    action_array_length = action_array.length;
+
+                                    if (action_array_length == 0) {
+                                        console.log("empty    ===========")
+                                        document.getElementById("action_button").style.display =
+                                            "none";
+                                        $(".template_select").hide();
+                                    } else if (action_array_length == 1) {
+                                        document.getElementById("action_button").style.display =
+                                            "block";
+                                        document.getElementById("action_edit").style.display =
+                                            "block";
+                                        document.getElementById("action_preview").style.display =
+                                            "block";
+                                        selected_template = action_array[0];
+
+                                        $(".template_select").show();
+                                    } else {
+                                        console.log("not empty===========")
+                                        console.log(action_array)
+                                        document.getElementById("action_edit").style.display =
+                                            "none";
+                                        document.getElementById("action_button").style.display =
+                                            "block";
+                                        document.getElementById("action_preview").style.display =
+                                            "none";
+                                        $(".template_select").hide();
+                                    }
+                                });
+
+                        });
+
+
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+
+
+
+
+
+                ZOHO.embeddedApp.on("PageLoad", function (data) {
+                    console.log(JSON.stringify(data));
+                    moduleName = data.Entity
+                    console.log("Page Loaded with data");
+
+                    console.log(data.EntityId)
+
+                    const userids = data.EntityId
+                    entitydetail = data
+                });
+
+
+                ZOHO.embeddedApp.init()
+
+            }
+        </script>
 </body>
 
 </html>
-
