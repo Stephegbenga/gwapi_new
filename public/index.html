@@ -136,7 +136,7 @@
                     <input class="form-check-input flexradio_picker" type="radio" name="flexRadioDefault"
                         id="flexRadioDefault1" value="sendnow" checked>
                     <label class="form-check-label" for="flexRadioDefault1">
-                        Send Immediately at an interval of <input type="text" aria-label="Username" style="width: 30px;"
+                        Send Immediately at an interval of <input type="text" id="time_interval" aria-label="Username" style="width: 30px;"
                             value="10"> secs
 
                     </label>
@@ -440,7 +440,15 @@
 
                     console.log(data)
                 } else {
-                    
+                    // get value for time interval
+                    let time_interval = $("#time_interval").val();
+                    data['sendoption'] =  sendoption;
+                    data['wa_option'] =  wa_option;
+                    data['selected_template'] =  selected_template;
+                    data['entitydetail'] = entitydetail
+                    data['time_interval'] = time_interval;
+                    console.log(data)
+
                 }
 
             }
