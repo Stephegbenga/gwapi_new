@@ -77,7 +77,7 @@
                 To
             </div>
             <div class="col" id="no_selected_contact">
-                
+
             </div>
 
         </div>
@@ -140,8 +140,8 @@
 
                     </label>
                 </div>
-               
-          
+
+
                 <div class="form-check" style="border: none;">
                     <input class="form-check-input flexradio_picker" type="radio" name="flexRadioDefault"
                         id="flexRadioDefault2" value="sendlater">
@@ -169,11 +169,11 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
                 <div class="form-check">
-                    Interval Between message:  <input  type="text" id="time_interval" aria-label="Username"
-                    style="" value="10"> secs
+                    Interval Between message: <input type="text" id="time_interval" aria-label="Username" style=""
+                        value="10"> secs
                 </div>
 
             </div>
@@ -190,6 +190,16 @@
                 <button class="btn btn-primary" type="button" onclick="send_whatsappmessage()">
                     Send Message
                 </button>
+            </div>
+        </div>
+
+
+        <!-- Modal  for processing_message Sent -->
+        <div class="modal fade" id="processing_message" tabindex="-1" aria-labelledby="alertdelete" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content processing_message">
+
+                </div>
             </div>
         </div>
 
@@ -470,8 +480,22 @@
                     data: data
                 };
 
+                var html_content = `<div class="modal-header">
+                            <h5 class="modal-title">Status</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Processing..............</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>`
+                
+                        $(".processing_message").html(html_content);
+                // show the modal
+                $("#processing_message").modal("show");
+
                 axios(config)
-                alert("Sending Message")
                     .then(function (response) {
                         console.log(JSON.stringify(response.data));
                         alert(response.data)
@@ -1013,8 +1037,7 @@
 
                     console.log(data.EntityId)
 
-                    const userids = data.EntityId
-                    'no_selected_contact'
+                    const userids = data.EntityId 
                     // html of col with id 'no_selected_contact' 
                     var content = `${data.EntityId.length} Selected ${data.Entity}`;
                     $("#no_selected_contact").html(content)
