@@ -132,6 +132,40 @@ app.post("/sendmessage", async (req, res) => {
 
 
 
+app.post("/webhook", async (req, res) => {
+  console.log(req.body)
+  var session = req.body.session
+  var webhook_text = "Default Intent"
+var webhook_msg = {
+  "fulfillmentMessages": [
+    {
+      "text": {
+        "text": [
+          webhook_text
+        ]
+      }
+    }
+  ],"outputContexts": [
+    {
+      "name": `${session}/contexts/__system_counters__`,
+      "lifespanCount": 1
+    },
+    {
+      "name": `${session}/contexts/param`,
+      "lifespanCount": 0
+    },{
+      "name": `${session}/contexts/choosing_menu_options-followup`,
+      "lifespanCount": 0
+    }
+  ]
+}
+res.send(webhook_msg)
+
+});
+
+
+
+
 app.listen(PORT, () => {
   console.log(`Server is up and running at ${PORT}`);
 });

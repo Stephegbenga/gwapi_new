@@ -33,12 +33,14 @@ app.use(
 app.use(express.static('public'));
 
 
-app.use(express.json()); 
+app.use(express.json());
 
 
 
 const client = new Client({
-  authStrategy: new LocalAuth('session_files',{ clientId: "09012527939" })
+  authStrategy: new LocalAuth('session_files', {
+    clientId: "09012527939"
+  })
 });
 
 client.initialize();
@@ -71,26 +73,48 @@ client.on('ready', () => {
 
 
 
-client.on('message_create', msg => {
+client.on('message_create', async msg => {
 
-  if (!msg.isStatus && msg.from.length != 23 && !msg.hasMedia) {
-    if(msg.fromMe){
-      var data = JSON.stringify({
-        "number": `${msg.to.split('@')[0]}`,
-        "message":`${msg.body}`,
-        "timestamp": msg.timestamp,
-        "fromMe": msg.fromMe,
-        "notifyName": msg.notifyName
-      });
-    }else{
-      var data = JSON.stringify({
-        "number": `${msg.from.split('@')[0]}`,
-        "message":`${msg.body}`,
-        "timestamp": msg.timestamp,
-        "fromMe": msg.fromMe,
-        "notifyName": msg.notifyName
-      });
+  if (!msg.isStatus && msg.from.length != 23) {
+    // if msg.body start with @
+    if (msg.body.startsWith('@')) {
+      msg.delete(true)
     }
+
+    var data = {
+      "number": `${msg.from.split('@')[0]}`,
+      "message": `${msg.body}`,
+      "timestamp": msg.timestamp,
+      "fromMe": msg.fromMe,
+      "notifyName": msg.notifyName,
+      "quotedMessage":null,
+      "pushname":null
+    }
+
+
+
+    if (msg.fromMe) {
+      data['number'] = `${msg.to.split('@')[0]}`
+    }
+
+    if (!msg.fromMe){
+      await msg.getContact().then(function (response) {
+        data['pushname'] = response['pushname']
+      })
+    }
+
+    if (msg.hasMedia) {
+      data['message'] = '.'
+    }
+
+    if(msg.hasQuotedMsg){
+      await msg.getQuotedMessage().then(function (response) {
+        data['quotedMessage'] = response.body
+      })
+    }
+    
+
+    
     // console.log(data)
 
     var config = {
@@ -99,9 +123,9 @@ client.on('message_create', msg => {
       headers: {
         'Content-Type': 'application/json'
       },
-      data: data
+      data: JSON.stringify(data)
     };
- 
+
     axios(config)
       .then(function (response) {
         console.log(JSON.stringify(response.data));
@@ -112,6 +136,36 @@ client.on('message_create', msg => {
   }
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.get("/", async (req, res) => {
   res.send("Second Whatsapp Api");
@@ -128,27 +182,27 @@ app.post("/sendmessage", async (req, res) => {
     let numbers = req.body.numbers;
     let message = req.body.message;
 
-    
-   
+
+
     for (number of numbers) {
       var symbolsremoved = number.replace(/\D/g, '');
       // check if the first three letter from formatted_number is 852
-      if (symbolsremoved.substring(0, 3) == "852"){
+      if (symbolsremoved.substring(0, 3) == "852") {
         console.log("already in desired format")
         var formatted_number = symbolsremoved;
-      }else if(symbolsremoved.substring(0, 3) == "234"){
+      } else if (symbolsremoved.substring(0, 3) == "234") {
         console.log("already in desired format")
         var formatted_number = symbolsremoved;
         // check if length of number is greater thann 8
-      }else if(symbolsremoved.length > 8){
+      } else if (symbolsremoved.length > 8) {
         console.log("already in desired format")
         var formatted_number = symbolsremoved;
-      }else{
+      } else {
         var formatted_number = `852${symbolsremoved}`;
       }
       client.sendMessage(`${formatted_number}@c.us`, message).catch(function (error) {
-      console.log(error.message);
-    });
+        console.log(error.message);
+      });
     }
     res.send({
       "message": "success"
@@ -178,41 +232,36 @@ Interested in purchasing Memberships, Teacher Training, other services You can c
 Please type *STAFF* to chat with a live staff and the staff will respond to your query in a sequential order during the office opening hours.\n\n\
 \
 Please type *Restart* to go back to main menu or type “End” to end this chat and if your enquiry has been addressed or acknowledged 🙏😊🧘🏼‍♀️"
-var webhook_msg = {
-  "fulfillmentMessages": [
-    {
+  var webhook_msg = {
+    "fulfillmentMessages": [{
       "text": {
         "text": [
           webhook_text
         ]
       }
-    }
-  ],"outputContexts": [
-    {
-      "name": `${session}/contexts/__system_counters__`,
-      "lifespanCount": 1
-    },
-    {
-      "name": `${session}/contexts/option1-followup`,
-      "lifespanCount": 0
-    },{
-      "name": `${session}/contexts/option3-followup`,
-      "lifespanCount": 0
-    },
-    {
-      "name": `${session}/contexts/option4-followup`,
-      "lifespanCount": 0
-    }
-  ]
-}
-res.send(webhook_msg)
+    }],
+    "outputContexts": [{
+        "name": `${session}/contexts/__system_counters__`,
+        "lifespanCount": 1
+      },
+      {
+        "name": `${session}/contexts/option1-followup`,
+        "lifespanCount": 0
+      }, {
+        "name": `${session}/contexts/option3-followup`,
+        "lifespanCount": 0
+      },
+      {
+        "name": `${session}/contexts/option4-followup`,
+        "lifespanCount": 0
+      }
+    ]
+  }
+  res.send(webhook_msg)
 
 });
-
 
 
 app.listen(PORT, () => {
   console.log(`Server is up and running at ${PORT}`);
 });
-
-
